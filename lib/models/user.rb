@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   validates_format_of                 :email,      :with => EMAIL_REXEX,
                                                    :message => "邮箱地址格式有误，请检查"
 
-  def self.authenticated(name, password)
+  def self.authentication(name, password)
     user = self.find_by_name(name, password)
     if user
       if user.encrypted_password != generate_encrypted_password(password, user.salt)
