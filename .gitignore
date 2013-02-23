@@ -19,3 +19,5 @@ doc/
 
 coverage/
 coverage/*
+.idea/
+.idea/*
