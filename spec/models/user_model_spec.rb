@@ -4,23 +4,14 @@ require './spec/spec_helper'
 describe "User Model" do
   context "User Model for Validation" do
     before(:each) do
-      @user1 = User.new(:name => "kennx", :email => "kennx@test.com", :password => "1234567",
-                        :password_confirmation => "1234567")
-      @user2 = User.new(:name => "kennx2", :email => "kennx@qq.c", :password => "1234567",
-                        :password_confirmation => "1234567")
-      @user3 = User.new(:name => "kennx", :email => "kennx@test.com", :password => "1234",
-                        :password_confirmation => "1234")
-      @user4 = User.new(:name => "kennx", :email => "kennx@test.com", :password => "1234567",
-               :password_confirmation => "")
-      @user5 = User.new(:name => "kennx", :email => "kennx@test.com", :password => "12345671312312321312321321828377213872121313",
-                        :password_confirmation => "12345671312312321312321321828377213872121313")
-      @user6 = User.new(:name => "do", :email => "kennx@test.com", :password => "12345671312312321312321321828377213872121313",
-                        :password_confirmation => "12345671312312321312321321828377213872121313")
-      @new_user1 = User.new(:name => @user1.name, :email => "kennx2@test.com", :password => "1234567",
-                           :password_confirmation => "1234567")
-      @new_user2 = User.new(:name => "kennx231", :email => @user1.email, :password => "1234567",
-                            :password_confirmation => "1234567")
-
+      @user1 = User.new(:name => "kennx",   :email => "kennx@test.com", :password => "1234567",:password_confirmation => "1234567")
+      @user2 = User.new(:name => "kennx2",  :email => "kennx@qq.c",     :password => "1234567",:password_confirmation => "1234567")
+      @user3 = User.new(:name => "kennx",   :email => "kennx@test.com", :password => "1234",   :password_confirmation => "1234")
+      @user4 = User.new(:name => "kennx",   :email => "kennx@test.com", :password => "1234567",:password_confirmation => "")
+      @user5 = User.new(:name => "kennx",   :email => "kennx@test.com", :password => "12345671312312321312321321828377213872121313",:password_confirmation => "12345671312312321312321321828377213872121313")
+      @user6 = User.new(:name => "do", :email => "kennx@test.com", :password => "12345671312312321312321321828377213872121313",:password_confirmation => "12345671312312321312321321828377213872121313")
+      @new_user1 = User.new(:name => @user1.name, :email => "kennx2@test.com", :password => "1234567",:password_confirmation => "1234567")
+      @new_user2 = User.new(:name => "kennx231", :email => @user1.email, :password => "1234567",:password_confirmation => "1234567")
     end
     it "should validation passing" do
       @user1.valid?.should be_true
@@ -65,6 +56,11 @@ describe "User Model" do
     end
     it "should authentication fail for kennx2" do
       User.authentication("kennx2", "1234567").should be_nil
+    end
+    it "should user not is admin" do
+      @user1.save.should be_true
+      User.first.is_admin?.should be_false
+      User.first.destroy.should be_true
     end
   end
 end

@@ -1,1 +1,9 @@
-<%= @info %>
+
+<% @users.each do |user| %>
+<p><a href="/user/<%= user.id %>"><%= user.name %></a></p>
+<% end %>
+
+<%= form_for do %>
+dddcsadsasad
+<% end %>
+

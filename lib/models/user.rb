@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def is_admin?
+    self.admin
+  end
+
   private
   def generate_salt
     mixin_str = SecureRandom.hex(8) + self.name + rand.to_s
