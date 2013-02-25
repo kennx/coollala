@@ -1,5 +1,9 @@
-module ApplicationController;end;
-module UsersController;end;
+module ApplicationController
+	;
+end;
+module UsersController
+	;
+end;
 
 module Sinatra
 	module Coollala

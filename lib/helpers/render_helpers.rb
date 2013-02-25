@@ -10,7 +10,7 @@ module Sinatra
 				if collection = options.delete(:collection) then
 					collection.inject([]) do |buffer, member|
 						buffer << erb(:"#{template}", options.merge(:layout =>
-																													false, :locals => {template_array[-1].to_sym => member}.merge(locals)))
+							                                            false, :locals => {template_array[-1].to_sym => member}.merge(locals)))
 					end.join("\n")
 				else
 					erb(:"#{template}", options)
