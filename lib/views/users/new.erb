@@ -1,9 +1,9 @@
 <script type="text/javascript">
-	$(document).ready(function () {
-		$("#avatars_option").change(function () {
-			$("#avatar_tag").attr('src', '/assets/images/avatars/' + this.value)
-		})
-	})
+    $(document).ready(function () {
+        $("#avatars_option").change(function () {
+            $("#avatar_tag").attr('src', '/assets/images/avatars/' + this.value)
+        })
+    })
 </script>
 <form action="/admin/user/create" method="post" class="form-horizontal">
   <div class="control-group">
@@ -20,7 +20,7 @@
       <select name="user[avatar]" id="avatars_option">
         <option value="default.gif">default</option>
         <% Dir.glob(settings.root + settings.avatar_directory + "avatar_*.gif").each do |avatar| %>
-          <option value="<%= File.basename(avatar) %>"><%= File.basename(avatar).gsub(/\.gif/, '') %></option>
+            <option value="<%= File.basename(avatar) %>"><%= File.basename(avatar).gsub(/\.gif/, '') %></option>
         <% end %>
       </select>
     </div>
