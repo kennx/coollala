@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 require 'logger'
 require File.expand_path('../boot', __FILE__)
 require File.expand_path('../../config/config', __FILE__)
