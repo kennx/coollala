@@ -15,6 +15,8 @@ module Coollala
     register Sinatra::Coollala::Config
 
     use Rack::MethodOverride
+    use Rack::Session::Cookie, :key => "_coollala_session", :domain => nil, :path => '/', :secret => 'your_secret'
+    use Rack::Flash, :sweep => true
 
     configure :development, :test, :production do
       set :root, File.expand_path('../../', __FILE__)
@@ -26,12 +28,13 @@ module Coollala
       enable :logging
       ActiveRecord::Base.logger = Logger.new(STDOUT)
     end
-
     configure :development do
       register Sinatra::Reloader
       Dir.glob(File.expand_path('../../', __FILE__) + '/lib/helpers/**/*.rb') { |file| also_reload file }
       Dir.glob(File.expand_path('../../', __FILE__) + '/lib/models/**/*.rb') { |file| also_reload file }
       Dir.glob(File.expand_path('../../', __FILE__) + '/lib/controllers/**/*.rb') { |file| also_reload file }
+      also_reload File.expand_path('../../', __FILE__) + "/config/application.rb"
+
     end
 
     DB_CONFIG = YAML::load(File.open(File.expand_path("../../", __FILE__) + "/config/database.yml"))
@@ -42,6 +45,7 @@ module Coollala
     helpers Sinatra::Coollala::TagsHelpers
     helpers Sinatra::Coollala::ApplicationHelpers
     helpers Sinatra::Coollala::TimesHelpers
+    helpers Sinatra::Coollala::UsersHelpers
   end
 end
 

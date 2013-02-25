@@ -16,6 +16,19 @@ module Sinatra
           "#{title} - #{settings.app_cn_name}"
         end
       end
+
+      def automatic_each(object)
+        arr = []
+        if object.is_a?(Hash)
+          object.each_value do |value|
+            arr << value
+          end
+        else
+          arr << object
+        end
+        arr.flatten
+      end
+
     end
   end
   helpers Coollala::ApplicationHelpers
