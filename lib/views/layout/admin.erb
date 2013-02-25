@@ -2,11 +2,34 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Admin Templant</title>
+    <title><%= meta_title(@title) %></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <script type="text/javascript" src="/assets/javascript/jquery.js"></script>
+    <script type="text/javascript" src="/assets/javascript/bootstrap.min.js"></script>
   </head>
   <body>
-    <%= yield %>
+
+    <div class="container">
+
+      <div class="masthead">
+        <%= render_partial 'shared/admin_navigation' %>
+        <h3 class="brand">后台管理</h3>
+      </div>
+			<hr>
+
+
+      <div class="row-fluid">
+        <%= yield %>
+      </div>
+
+
+      <hr>
+
+      <div class="footer">
+        <p>&copy; Company 2013</p>
+      </div>
+
+    </div> <!-- /container -->
   </body>
 </html>

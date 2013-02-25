@@ -1,0 +1,73 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#avatars_option").change(function() {
+            $("#avatar_tag").attr('src', '/assets/images/avatars/' + this.value)
+        })
+    })
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".btn-danger").click(function() {
+			f = $('#destroy_form')
+			if (!f.length) {
+				$('body').append("<form id='destroy_form' method='post' action='" + $(this).attr('href') + "'>" + "<%= hidden_field_tag :delete %></form>");
+				if (confirm("确认删除？")) {
+					$('#destroy_form').submit();
+				}
+				$('#destroy_form').remove()
+			}
+			return false;
+		})
+	})
+</script>
+<form action="/user/<%= @user.id %>/update" method="post" class="form-horizontal">
+  <%= hidden_field_tag :put %>
+  <div class="control-group">
+    <label class="control-label">选择预览：</label>
+    <div class="controls">
+      <img id="avatar_tag" src="/assets/images/avatars/<%= @user.avatar %>">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputAvatar">选择头像：</label>
+    <div class="controls">
+      <select name="user[avatar]" id="avatars_option">
+        <option value="default.gif">default</option>
+        <% Dir.glob(settings.root + settings.avatar_directory + "avatar_*.gif").each do |avatar| %>
+            <option value="<%= File.basename(avatar) %>" <%= "selected" if @user.avatar == File.basename(avatar) %>><%= File.basename(avatar).gsub(/\.gif/,'') %></option>
+        <% end %>
+      </select>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputName">用户名：</label>
+    <div class="controls">
+      <input type="text" name="user[name]" id="inputName" value="<%= @user.name %>">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputEmail">email：</label>
+    <div class="controls">
+      <input type="text" name="user[email]" id="inputEmail" value="<%= @user.email %>">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">密码</label>
+    <div class="controls">
+      <input type="password" name="user[password]" id="inputPassword" placeholder="输入密码">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputPasswordConfirmation">确认密码</label>
+    <div class="controls">
+      <input type="password" name="user[password_confirmation]" id="inputPasswordConfirmation" placeholder="确认密码">
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-primary">提交</button>
+			<a href="/admin/user/<%= @user.id %>/delete/" class="btn btn-danger">删除用户</a>
+    </div>
+  </div>
+</form>

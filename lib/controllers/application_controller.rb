@@ -11,4 +11,5 @@ module Sinatra
     end
   end
   register Coollala::Controllers
+
 end

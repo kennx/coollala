@@ -2,7 +2,7 @@
 
 require 'logger'
 require File.expand_path('../boot', __FILE__)
-require File.expand_path('../../config/routes', __FILE__)
+require File.expand_path('../../config/config', __FILE__)
 
 Dir.glob(File.join(File.expand_path('../../', __FILE__), 'lib', 'helpers', '**', '*.rb')) { |file| require file}
 Dir.glob(File.join(File.expand_path('../../', __FILE__), 'lib', 'models', '**' '*.rb')) { |file| require file}
@@ -14,6 +14,9 @@ module Coollala
     register Sinatra::Namespace
     register Sinatra::ActiveRecordExtension
     register Sinatra::Coollala::Controllers
+    register Sinatra::Coollala::Config
+
+    use Rack::MethodOverride
 
     configure :development, :test, :production do
       set :root, File.expand_path('../../', __FILE__)
@@ -36,15 +39,11 @@ module Coollala
     DB_CONFIG = YAML::load(File.open(File.expand_path("../../", __FILE__) + "/config/database.yml"))
     ActiveRecord::Base.establish_connection(DB_CONFIG[settings.environment.to_s])
 
-    set :app_en_name,      'Coollala'
-    set :app_cn_name,      '酷拉拉'
-    set :app_description,  '酷拉拉'
-    set :app_keywords,     '酷拉拉'
-    set :app_domain,       'www.coollala.com'
 
-    helpers  Sinatra::RenderHelpers
-
-
+    helpers  Sinatra::Coollala::RenderHelpers
+    helpers  Sinatra::Coollala::TagsHelpers
+    helpers  Sinatra::Coollala::ApplicationHelpers
+    helpers  Sinatra::Coollala::TimesHelpers
   end
 end
 

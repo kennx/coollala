@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
                                                    :message => "用户名必须为大于3位小于等于15位"
 
   validates_length_of                 :password,   :within => 5...20,
-                                      :message => "密码长度必须为大于5位小于等于20位"
+                                      :message =>  "密码长度必须为大于5位小于等于20位"
 
   validates_format_of                 :email,      :with => EMAIL_REXEX,
                                                    :message => "邮箱地址格式有误，请检查"

@@ -1,9 +1,34 @@
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".destroy").click(function() {
+		f = $('#destroy_form')
+		if (!f.length) {
+			$('body').append("<form id='destroy_form' method='post' action='" + $(this).attr('href') + "'>" + "<%= hidden_field_tag :delete %></form>");
+			if (confirm("确认删除？")) {
+				$('#destroy_form').submit();
+			}
+			$('#destroy_form').remove()
+		}
+		return false;
+  })
+})
+</script>
 
 <% @users.each do |user| %>
-<p><a href="/user/<%= user.id %>"><%= user.name %></a></p>
+  <div class="media">
+    <a class="pull-left" href="/admin/user/<%= user.id %>">
+      <img class="media-object" src="/assets/images/avatars/<%= user.avatar %>">
+    </a>
+		<div class="row-fluid">
+			<div class="span9">
+				<div class="media-body">
+					<h4 class="media-heading"><a href="/admin/user/<%= user.id %>"><%= user.name %></a> <small><%= chn_time_format(user.created_at) %></small></h4>
+				</div>
+			</div>
+			<div class="span2" style="text-align: right">
+				<a class="btn btn-mini" href="/admin/user/<%= user.id %>/edit/">编辑</a>
+				<a class="btn btn-danger btn-mini destroy" href="/admin/user/<%= user.id %>/delete">删除</a>
+			</div>
+		</div>
+  </div>
 <% end %>
-
-<%= form_for do %>
-dddcsadsasad
-<% end %>
-
