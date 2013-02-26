@@ -1,0 +1,32 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".destroy").click(function () {
+            f = $('#destroy_form')
+            if (!f.length) {
+                $('body').append("<form id='destroy_form' method='post' action='" + $(this).attr('href') + "'>" + "<%= hidden_field_tag :delete %></form>");
+                if (confirm("确认删除？")) {
+                    $('#destroy_form').submit();
+                }
+                $('#destroy_form').remove()
+            }
+            return false;
+        })
+    })
+</script>
+<% @groups.each do |group| %>
+    <div class="media">
+      <div class="row-fluid">
+        <div class="span9">
+          <div class="media-body">
+            <h4 class="media-heading"><a href="/admin/group/<%= group.slug %>"><%= group.name %></a>
+              <small><%= chn_time_format(group.created_at) %></small>
+            </h4>
+          </div>
+        </div>
+        <div class="pull-right">
+          <a class="btn btn-mini" href="/admin/group/<%= group.slug %>/edit/">编辑</a>
+          <a class="btn btn-danger btn-mini destroy" href="/admin/group/<%= group.slug %>/delete">删除</a>
+        </div>
+      </div>
+    </div>
+<% end %>

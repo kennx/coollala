@@ -1,4 +1,4 @@
-source 'http://ruby.taobao.org'
+source 'https://rubygems.org'
 
 gem 'sinatra',                  '~> 1.3.0',        :require => ['sinatra/base', 'sinatra/namespace']
 gem 'erubis'
@@ -13,7 +13,6 @@ gem 'rack-flash3',              :require => 'rack-flash'
 
 group :development do
   gem 'pry'
-  gem 'ruby-debug-ide19'
 end
 
 group :test do

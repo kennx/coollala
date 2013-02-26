@@ -34,6 +34,7 @@ module Coollala
 
     register Sinatra::Coollala::ApplicationControllers
     register Sinatra::Coollala::UsersController
+    register Sinatra::Coollala::GroupsController
 
     helpers Sinatra::Coollala::RenderHelpers
     helpers Sinatra::Coollala::TagsHelpers

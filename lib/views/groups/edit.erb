@@ -1,0 +1,28 @@
+<form action="/admin/group/<%= @group.slug %>/update" method="post" class="form-horizontal">
+  <%= hidden_field_tag :put %>
+  <div class="control-group">
+    <label class="control-label" for="inputName">小组名称：</label>
+
+    <div class="controls">
+      <input type="text" name="group[name]" id="inputName" value="<%= @group.name %>">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputSlug">小组代号：</label>
+
+    <div class="controls">
+      <input type="text" name="group[slug]" id="inputSlug" value="<%= @group.slug %>">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputSummary">小组简介：</label>
+    <div class="controls">
+      <textarea name="group[summary]" id="inputSummary" class="span5" rows="10"><%= @group.summary %></textarea>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-primary">提交</button>
+    </div>
+  </div>
+</form>
