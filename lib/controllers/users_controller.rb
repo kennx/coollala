@@ -3,8 +3,10 @@ module UsersController
   def self.included(app)
     app.namespace '/admin/?' do
       before do
-        if current_user
+        if current_user.respond_to?(:is_admin?)
           halt 401 unless current_user.is_admin?
+        else
+          halt 401
         end
         @title = "后台管理"
       end
@@ -74,6 +76,11 @@ module UsersController
         flash[:errors] = session.errors.messages || "用户名或者密码错误"
         redirect back
       end
+    end
+    app.delete '/sign_out/?' do
+      sign_out!
+      flash[:notice] = "成功退出"
+      redirect '/sign_in/'
     end
   end
 end

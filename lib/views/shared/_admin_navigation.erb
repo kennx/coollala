@@ -1,4 +1,13 @@
-<ul class="nav nav-pills pull-right">
-  <li <%= "class='active'" if current_page?('/admin/') %>><a href="/admin/">首页</a></li>
-  <li <%= "class='active'" if current_page?('/admin/users') %>><a href="/admin/users">用户管理</a></li>
-</ul>
+<div class="pull-right" style="margin-left: 2em; padding-top: 5px">
+  <form action="/sign_out" method="post" class="form-inline">
+    <%= hidden_field_tag :delete %>
+    <button type="submit" class="btn btn-mini">登出</button>
+  </form>
+</div>
+
+<div class="pull-right">
+    <ul class="nav nav-pills">
+      <li <%= "class='active'" if current_page?('/admin/') %>><a href="/admin/">首页</a></li>
+      <li <%= "class='active'" if current_page?('/admin/users') %>><a href="/admin/users">用户管理</a></li>
+    </ul>
+</div>

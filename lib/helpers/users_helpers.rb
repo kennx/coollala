@@ -3,7 +3,7 @@ module Sinatra
     module UsersHelpers
 
       def signed_in(user)
-        store = Coollala::SessionStore.create(:username => user.salt, :userdata => user)
+        store = ::Coollala::SessionStore.create(:username => user.salt, :userdata => user)
         session[:user_token] = store[:data].salt
         self.current_user = store[:data]
       end
@@ -14,7 +14,7 @@ module Sinatra
 
       def current_user
         if session[:user_token]
-          Coollala::SessionStore.get(session[:user_token])[:data]
+          ::Coollala::SessionStore.get(session[:user_token])[:data]
         else
           nil
         end
@@ -34,7 +34,7 @@ module Sinatra
       end
 
       def sign_out!
-        Coollala::SessionStore.stored_data.delete(session[:user_token])
+        ::Coollala::SessionStore.stored_data.delete(session[:user_token])
         session[:user_token] = nil
         self.current_user = nil
       end
