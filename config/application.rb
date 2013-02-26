@@ -14,6 +14,7 @@ module Coollala
     register Sinatra::Coollala::Controllers
     register Sinatra::Coollala::Config
 
+    use ActiveRecord::QueryCache
     use Rack::MethodOverride
     use Rack::Session::Cookie, :key => "_coollala_session", :domain => nil, :path => '/', :secret => 'your_secret'
     use Rack::Flash, :sweep => true
