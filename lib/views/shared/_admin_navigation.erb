@@ -1,13 +1,23 @@
-<div class="pull-right" style="margin-left: 2em; padding-top: 5px">
-  <form action="/sign_out" method="post" class="form-inline">
-    <%= hidden_field_tag :delete %>
-    <button type="submit" class="btn btn-mini">登出</button>
-  </form>
-</div>
-
-<div class="pull-right">
-    <ul class="nav nav-pills">
-      <li <%= "class='active'" if current_page?('/admin/') %>><a href="/admin/">首页</a></li>
-      <li <%= "class='active'" if current_page?('/admin/users') %>><a href="/admin/users">用户管理</a></li>
-    </ul>
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="brand" href="#">Project name</a>
+      <div class="nav-collapse collapse">
+        <p class="navbar-text pull-right">
+          <% if sign_in? %>
+            <a href="/sign_out/" id="sign-out">登出</a>
+          <% end %>
+        </p>
+        <ul class="nav">
+          <li <%= "class='active'" if current_page?('/admin/') %>><a href="/admin/">首页</a></li>
+          <li <%= "class='active'" if current_page?('/admin/users') %>><a href="/admin/users">用户管理</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
 </div>

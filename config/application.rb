@@ -11,7 +11,6 @@ module Coollala
 
     register Sinatra::Namespace
     register Sinatra::ActiveRecordExtension
-    register Sinatra::Coollala::Controllers
     register Sinatra::Coollala::Config
 
     use ActiveRecord::QueryCache
@@ -29,18 +28,12 @@ module Coollala
       enable :logging
       ActiveRecord::Base.logger = Logger.new(STDOUT)
     end
-    configure :development do
-      register Sinatra::Reloader
-      Dir.glob(File.expand_path('../../', __FILE__) + '/lib/helpers/**/*.rb') { |file| also_reload file }
-      Dir.glob(File.expand_path('../../', __FILE__) + '/lib/models/**/*.rb') { |file| also_reload file }
-      Dir.glob(File.expand_path('../../', __FILE__) + '/lib/controllers/**/*.rb') { |file| also_reload file }
-      also_reload File.expand_path('../../', __FILE__) + "/config/application.rb"
-
-    end
 
     DB_CONFIG = YAML::load(File.open(File.expand_path("../../", __FILE__) + "/config/database.yml"))
     ActiveRecord::Base.establish_connection(DB_CONFIG[settings.environment.to_s])
 
+    register Sinatra::Coollala::ApplicationControllers
+    register Sinatra::Coollala::UsersController
 
     helpers Sinatra::Coollala::RenderHelpers
     helpers Sinatra::Coollala::TagsHelpers
@@ -49,5 +42,3 @@ module Coollala
     helpers Sinatra::Coollala::UsersHelpers
   end
 end
-
-

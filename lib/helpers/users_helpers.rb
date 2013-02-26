@@ -3,7 +3,7 @@ module Sinatra
     module UsersHelpers
 
       def signed_in(user)
-        session[:user_token] = user.salt
+        session[:user_token] = user.auth_token
         self.current_user = user
       end
 
@@ -13,7 +13,7 @@ module Sinatra
 
       def current_user
         if session[:user_token]
-          User.find_by_salt(session[:user_token])
+          User.find_by_auth_token(session[:user_token])
         else
           nil
         end

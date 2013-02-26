@@ -17,7 +17,7 @@ end
 namespace :app do
   desc 'Run Application'
   task :s do
-    sh 'rackup -p 4567 -E development'
+    sh "rerun thin start -p 4567"
   end
   desc 'Enter Application Console'
   task :c do

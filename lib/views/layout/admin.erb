@@ -9,30 +9,30 @@
   <script type="text/javascript" src="/assets/javascript/bootstrap.min.js"></script>
 </head>
 <body>
-
-<div class="container">
-
-  <div class="masthead">
-    <%= render_partial 'shared/admin_navigation' %>
-    <h3 class="brand">后台管理</h3>
-  </div>
-  <hr>
-
-  <%= render_partial 'shared/flash' %>
-
+<%= render_partial 'shared/admin_navigation' %>
+<div class="container-fluid">
   <div class="row-fluid">
-    <%= yield %>
+    <%= render_partial 'shared/flash' %>
+    <div class="span9">
+      <%= yield %>
+    </div>
+    <%= render_partial 'shared/admin_sidebar' if sign_in? %>
   </div>
-
-
-  <hr>
-
-  <div class="footer">
-    <p>&copy; Company 2013</p>
-  </div>
-
-
 </div>
-<!-- /container -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sign-out").click(function () {
+            f = $('#sign-out-form')
+            if (!f.length) {
+                $('body').append("<form id='sign-out-form' method='post' action='" + $(this).attr('href') + "'>" + "<%= hidden_field_tag :delete %></form>");
+                if (confirm("确认登出？")) {
+                    $('#sign-out-form').submit();
+                }
+                $('#sign-out-form').remove()
+            }
+            return false;
+        })
+    })
+</script>
 </body>
 </html>
