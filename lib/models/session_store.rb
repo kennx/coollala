@@ -11,9 +11,10 @@ module Coollala
       key = params.delete(:username)
       data = params.delete(:userdata)
       expire = params.delete(:expire)
-      return nil if @@sessions.has_key?(key)
-      new(key, data, expire)
-      @@sessions[key]
+      unless @@sessions.has_key?(key)
+        new(key, data, expire)
+      end
+      Marshal.load(@@sessions[key])
     end
     def self.get(key)
       if @@sessions.has_key?(key)

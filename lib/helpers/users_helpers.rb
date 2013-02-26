@@ -1,11 +1,11 @@
-require 'base64'
 module Sinatra
   module Coollala
     module UsersHelpers
 
       def signed_in(user)
-        session[:user_token] = Base64.encode64(user.salt)
-        self.current_user=user
+        store = Coollala::SessionStore.create(:username => user.salt, :userdata => user)
+        session[:user_token] = store[:data].salt
+        self.current_user = store[:data]
       end
 
       def current_user?(user)
@@ -14,7 +14,7 @@ module Sinatra
 
       def current_user
         if session[:user_token]
-          @current_user ||= User.find_by_salt(Base64.decode64(session[:user_token]))
+          Coollala::SessionStore.get(session[:user_token])[:data]
         else
           nil
         end
@@ -34,7 +34,8 @@ module Sinatra
       end
 
       def sign_out!
-        session.delete(:user_token)
+        Coollala::SessionStore.stored_data.delete(session[:user_token])
+        session[:user_token] = nil
         self.current_user = nil
       end
 

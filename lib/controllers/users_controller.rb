@@ -3,7 +3,9 @@ module UsersController
   def self.included(app)
     app.namespace '/admin/?' do
       before do
-        halt 401 unless current_user.is_admin?
+        if current_user
+          halt 401 unless current_user.is_admin?
+        end
         @title = "后台管理"
       end
     end
@@ -23,7 +25,7 @@ module UsersController
         @user = User.new(params[:user])
         if @user.save
           flash[:notice] = "创建用户成功"
-          redirect '/admin/user/' + @user.id.to_s
+          redirect '/sign_in'
         else
           flash[:errors] = @user.errors.messages
           redirect back
