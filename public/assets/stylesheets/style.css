@@ -191,12 +191,12 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
-h1.branding {
+.header h1.branding {
   padding-top:12px;
 }
 
 
-h1.branding {
+.header h1.branding {
   width: 150px;
   height: 38px;
   float: left;
@@ -204,14 +204,14 @@ h1.branding {
 }
 
 
-h1.branding a {
+.header h1.branding a {
   width: 110px;
   height: 25px;
   margin-left: 20px;
   overflow: hidden;
 }
 
-h1.branding a {
+.header h1.branding a {
   display: block;
   cursor: pointer;
   background: url("../images/branding.png") no-repeat 0 0px;
@@ -219,7 +219,7 @@ h1.branding a {
   _background: none;
   _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src = '../images/branding.png', sizingMethod = 'crop');
 }
-h1.branding a:hover {
+.header h1.branding a:hover {
   background-position: 0 -25px;
 }
 
@@ -392,6 +392,44 @@ h1.branding a:hover {
   -o-transition: background-color 0.5s;
 }
 
+
+
+
+.chunk-main {
+  padding: 2em 0;
+  background-color: #058;
+  color: #FFF;
+}
+
+
+
+.chunk-main .branding a {
+  display: block;
+  width: 272px;
+  height: 73px;
+  background: url("../images/chunk-brand.png");
+  margin: 0 auto;
+  text-indent: -99999px;
+  overflow: hidden;
+}
+
+
+
+.sign-up-form {
+  width: 500px;
+  margin: 20px auto 0 auto;
+}
+
+.sign-up-form .field-row {
+  border-bottom: 1px solid #DDD;
+  padding-bottom: 10px;
+  box-shadow: 0 1px 0 #F5F5F5;
+}
+
+.sign-up-form .field-input-text input {
+  width: 220px;
+}
+
 /* Layout stylesheets */
 
 .container {
@@ -494,6 +532,7 @@ form.horizontal .field-row {
   width: 100%;
   clear: both;
   margin-bottom: 10px;
+  min-height: 30px;
 }
 
 form.horizontal .field-row .label {
@@ -633,6 +672,13 @@ html>/**/body .button, x:-moz-any-link, x:default {
 .button-bule:active {
   background-color: #1952C7;
   color: #9fbcf2
+}
+
+
+a.button, a.button-bule {
+  display: inline-block;
+  line-height: 30px;
+
 }
 
 
