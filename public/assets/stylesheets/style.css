@@ -286,20 +286,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .column-main {
-  padding-top: 10px;
+  padding-top: 20px;
   margin: 0 210px 0 160px;
 }
 
 .column150 {
   width: 150px;
-  padding-top: 10px;
+  padding-top: 20px;
   zoom: 1;
   overflow: hidden;
 }
 
 .column200 {
   width: 200px;
-  padding-top: 10px;
+  padding-top: 20px;
   zoom: 1;
 }
 
