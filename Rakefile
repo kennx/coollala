@@ -17,7 +17,7 @@ end
 namespace :app do
   desc 'Run Application'
   task :s do
-    sh "rerun thin start -p 4567"
+    sh "shotgun -p 4567"
   end
   desc 'Enter Application Console'
   task :c do

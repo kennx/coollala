@@ -6,15 +6,15 @@ module Sinatra
         app.namespace '/admin/?' do
           get '/groups/?' do
             @groups = Group.all
-            erb :'/groups/index', :layout => :"/layout/admin"
+            erb :'/admin/groups/index', :layout => :"/layout/admin"
           end
         end
         app.namespace '/admin/group/?' do
           get '/new/?' do
-            erb :"/groups/new", :layout => :"/layout/admin"
+            erb :"/admin/groups/new", :layout => :"/layout/admin"
           end
           post '/create/?' do
-            @group = Group.new(params[:group])
+            @group = current_user.groups.new(params[:group])
             if @group.save
               flash[:notice] = "你的小组 #{@group.name} 建立成功"
               redirect "/admin/group/#{@group.slug}"
@@ -46,10 +46,10 @@ module Sinatra
             redirect '/admin/groups'
           end
           get '/?' do
-            erb :"/groups/show", :layout => :"/layout/admin"
+            erb :"/admin/groups/show", :layout => :"/layout/admin"
           end
           get '/edit/?' do
-            erb :"/groups/edit", :layout => :"/layout/admin"
+            erb :"/admin/groups/edit", :layout => :"/layout/admin"
           end
         end
       end

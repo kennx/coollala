@@ -21,3 +21,5 @@ coverage/
 coverage/*
 .idea/
 .idea/*
+psd/*
+psd/

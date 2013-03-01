@@ -17,13 +17,13 @@ module Sinatra
           get '/?' do
             @users = User.all
             @title = "用户列表"
-            erb :'/users/index', :layout => :'/layout/admin'
+            erb :'/admin/users/index', :layout => :'/layout/admin'
           end
         end
         app.namespace '/admin/user/?' do
           get '/new/?' do
             @title = "新建用户1"
-            erb :'/users/new', :layout => :'/layout/admin'
+            erb :'/admin/users/new', :layout => :'/layout/admin'
           end
           post '/create/?' do
             @user = User.new(params[:user])
@@ -58,11 +58,11 @@ module Sinatra
           end
           get '/?' do
             @title = "#{@user.name} 信息页面"
-            erb :'/users/show', :layout => :'/layout/admin'
+            erb :'/admin/users/show', :layout => :'/layout/admin'
           end
           get '/edit/?' do
             @title = "编辑 #{@user.name} 信息页面"
-            erb :'/users/edit', :layout => :'/layout/admin'
+            erb :'/admin/users/edit', :layout => :'/layout/admin'
           end
         end
         app.get '/sign_in/?' do

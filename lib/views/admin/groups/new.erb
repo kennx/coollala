@@ -1,0 +1,27 @@
+<form action="/admin/group/create" method="post" class="form-horizontal">
+  <div class="control-group">
+    <label class="control-label" for="inputName">小组名称：</label>
+
+    <div class="controls">
+      <input type="text" name="group[name]" id="inputName" placeholder="输入小组名称">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputSlug">小组代号：</label>
+
+    <div class="controls">
+      <input type="text" name="group[slug]" id="inputSlug" placeholder="输入小组代号">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputSummary">小组简介：</label>
+    <div class="controls">
+      <textarea name="group[summary]" id="inputSummary" class="span5" rows="10"></textarea>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-primary">提交</button>
+    </div>
+  </div>
+</form>

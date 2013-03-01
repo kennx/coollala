@@ -13,6 +13,7 @@ gem 'rack-flash3',              :require => 'rack-flash'
 
 group :development do
   gem 'pry'
+  gem 'shotgun'
 end
 
 group :test do
