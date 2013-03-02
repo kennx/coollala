@@ -3,6 +3,12 @@ module Sinatra
   module Coollala
     module GroupsController
       def self.registered(app)
+        app.get '/group/:slug/?' do
+          @group = Group.find_by_slug!(params[:slug])
+          @topics = @group.topics.recent
+          @title = @group.name
+          erb :'/groups/index', :layout => :"/layout/layout"
+        end
         app.namespace '/admin/?' do
           get '/groups/?' do
             @groups = Group.all

@@ -1,32 +1,22 @@
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(".destroy").click(function () {
-            f = $('#destroy_form')
-            if (!f.length) {
-                $('body').append("<form id='destroy_form' method='post' action='" + $(this).attr('href') + "'>" + "<%= hidden_field_tag :delete %></form>");
-                if (confirm("确认删除？")) {
-                    $('#destroy_form').submit();
-                }
-                $('#destroy_form').remove()
-            }
-            return false;
-        })
-    })
-</script>
-<% @groups.each do |group| %>
-    <div class="media">
-      <div class="row-fluid">
-        <div class="span9">
-          <div class="media-body">
-            <h4 class="media-heading"><a href="/admin/group/<%= group.slug %>"><%= group.name %></a>
-              <small><%= chn_time_format(group.created_at) %></small>
-            </h4>
-          </div>
+<div class="head">
+  <h3>小组简介</h3>
+</div>
+<div class="group-summary">
+<%= @group.summary %>
+</div>
+<div class="head">
+  <h3><span class="pull-right"><a href="/group/<%= @group.slug %>/new_topic">创建话题</a></span>共有 <%= @group.topics_count %> 话题</h3>
+</div>
+<div class="topics">
+  <ul>
+    <% @topics.each do |topic| %>
+      <li class="clearfix">
+        <a href="/group/topic/<%= topic.id %>" class="title"><%= topic.title %></a>
+        <div class="info">
+          <span class="pull-right"><a href=""><%= topic.user.name %></a> 回复了这个话题</span>
+          <span><%= avatar_tag(topic.user, "avatar") %><a href="/user/<%= topic.user_id %>"><%= topic.user.name %></a>  <%= chn_time_format(topic.created_at) %> 发布</span>
         </div>
-        <div class="pull-right">
-          <a class="btn btn-mini" href="/admin/group/<%= group.slug %>/edit/">编辑</a>
-          <a class="btn btn-danger btn-mini destroy" href="/admin/group/<%= group.slug %>/delete">删除</a>
-        </div>
-      </div>
-    </div>
-<% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -1,6 +1,7 @@
 # encoding: utf-8
 class Group < ActiveRecord::Base
   belongs_to                :user
+  has_many                  :topics
   SLUG_REGEX = /^(?:(?i)[a-z|0-9|A-Z|_|-]+)$/
 
   validates_presence_of     :name, :message => "小组名称不能空"

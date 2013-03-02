@@ -5,9 +5,34 @@ module Sinatra
       def self.registered(app)
         app.get '/' do
           @topics = Topic.explore
-          @title = "话题浏览"
+          @title = "浏览话题"
           erb :'/topics/index', :layout => :"/layout/layout"
         end
+        app.get '/group/topic/:id/?' do
+          @topic = Topic.find(params[:id])
+          @group = @topic.group
+          @title = @topic.title
+          erb :'/topics/show', :layout => :"/layout/layout"
+        end
+
+        app.get '/group/:slug/new_topic/?' do
+          @group = Group.find_by_slug!(params[:slug])
+          @title = "在 #{@group.name} 创建话题"
+          erb :'/topics/new', :layout => :"/layout/layout"
+        end
+        app.post '/group/:slug/create_topic' do
+          @group = Group.find_by_slug!(params[:slug])
+          @topic = @group.topics.new(params[:topic])
+          @topic.user_id = current_user.id
+          if @topic.save
+            flash[:notice] = "话题创建成功"
+            redirect "/group/#{@group.slug}"
+          else
+            flash[:errors] = @topic.errors.message
+            redirect back
+          end
+        end
+
         app.namespace '/admin/?' do
           get '/topics/?' do
             @topics = Topic.all
