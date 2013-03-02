@@ -4,4 +4,5 @@ class Topic < ActiveRecord::Base
   belongs_to  :group
   validates_presence_of     :title, :message => "话题标题不能为空"
   validates_presence_of     :body,  :message => "话题内容不能为空"
+  scope :explore, lambda {order("created_at DESC")}
 end
