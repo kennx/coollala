@@ -1,5 +1,4 @@
 # encoding: utf-8
-require 'rack/request'
 require 'digest/sha2'
 class User < ActiveRecord::Base
   has_many                      :groups
