@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Default Templant</title>
+  <title><%= meta_title(@title) %></title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="stylesheet" href="/assets/stylesheets/style.css">
 </head>
@@ -19,7 +19,15 @@
       </ul>
     </div>
     <div class="userinfo">
-      [<a href="">Kenn</a>] <button class="button">登出</button>
+      <% if sign_in? %>
+        [<a href="">Kenn</a>]
+        <form action="/sign_out" style="display: inline" method="post">
+          <%= hidden_field_tag :delete %>
+          <button class="button">登出</button>
+        </form>
+      <% else %>
+        <a href="/sign_in">登录</a> | <a href="/sign_up">注册</a>
+      <% end %>
     </div>
   </div>
 </div>
@@ -42,7 +50,7 @@
         </div>
       </div><!--column200-->
       <div class="column-main">
-        <div class="wrapper">
+        <div class="wrapper clearfix">
           <%= yield %>
         </div>
       </div><!--column-main-->
