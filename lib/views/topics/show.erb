@@ -1,4 +1,11 @@
-<h1><%= @topic.title %></h1>
-<div class="">
-  <%= @topic.body %>
+<div class="topic-content">
+  <div class="topic-head">
+    <h1><%= @topic.title %></h1>
+  </div>
+  <div class="author-info">
+    <%= avatar_tag(@topic.user) %> <a href="/user/<%= @topic.user_id %>"><%= @topic.user.name %></a> <br> 在 <%= @topic.created_at %> 发布
+  </div>
+  <div class="topic-body">
+    <%= auto_format @topic.body %>
+  </div>
 </div>

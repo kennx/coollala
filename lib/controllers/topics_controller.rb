@@ -14,13 +14,13 @@ module Sinatra
           @title = @topic.title
           erb :'/topics/show', :layout => :"/layout/layout"
         end
-
         app.get '/group/:slug/new_topic/?' do
+          redirect '/sign_in' unless sign_in?
           @group = Group.find_by_slug!(params[:slug])
           @title = "在 #{@group.name} 创建话题"
           erb :'/topics/new', :layout => :"/layout/layout"
         end
-        app.post '/group/:slug/create_topic' do
+        app.post '/group/:slug/create_topic/?' do
           @group = Group.find_by_slug!(params[:slug])
           @topic = @group.topics.new(params[:topic])
           @topic.user_id = current_user.id
@@ -32,7 +32,6 @@ module Sinatra
             redirect back
           end
         end
-
         app.namespace '/admin/?' do
           get '/topics/?' do
             @topics = Topic.all

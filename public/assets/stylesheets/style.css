@@ -315,6 +315,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .groups .head {
+  line-height: 36px;
   border-bottom: 1px solid #EEE;
 }
 
@@ -332,7 +333,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .wrapper .head {
-  line-height: 1.8;
+  line-height: 36px;
   border-bottom: 1px solid #f2f2f2;
 }
 
@@ -413,6 +414,46 @@ h1, h2, h3, h4, h5, h6 {
 .head h3 span.pull-right a:hover {
   background-color: #07F;
   border-color: #06F;
+}
+
+.topic-content .topic-head h1 {
+  font-size: 24px;
+  color: #07C;
+}
+
+.topic-content .topic-head {
+  margin-bottom: 10px;
+}
+
+.topic-content .topic-body,
+.topic-content .topic-head {
+  padding-right: 1.618em
+}
+
+.topic-content .topic-body p {
+
+}
+.topic-content .topic-body a {
+  color: #06C;
+  border-bottom: 1px dotted #999;
+}
+.topic-content .topic-body a:hover {
+  border-bottom: none;
+  color: #07F;
+}
+
+.author-info {
+  height: 36px;
+  line-height: 16px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #888;
+
+}
+.author-info img {
+  float: left;
+  vertical-align: baseline;
+  margin-right: 10px;
 }
 
 
