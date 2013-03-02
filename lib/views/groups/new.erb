@@ -1,27 +1,32 @@
-<form action="/admin/group/create" method="post" class="form-horizontal">
-  <div class="control-group">
-    <label class="control-label" for="inputName">小组名称：</label>
+<div class="head">
+  <h3>创建小组</h3>
+</div>
+<div class="create-group">
+  <form action="/group/create" method="post" class="horizontal">
+    <div class="field-row clearfix">
+      <label class="label" for="inputName"><sup>*</sup> 小组名称：</label>
 
-    <div class="controls">
-      <input type="text" name="group[name]" id="inputName" placeholder="输入小组名称">
+      <div class="field-input-text">
+        <input type="text" name="group[name]" id="inputName" placeholder="输入小组名称">
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputSlug">小组代号：</label>
+    <div class="field-row">
+      <label class="label" for="inputSlug">* 小组代号：</label>
 
-    <div class="controls">
-      <input type="text" name="group[slug]" id="inputSlug" placeholder="输入小组代号">
+      <div class="field-input-text">
+        <input type="text" name="group[slug]" id="inputSlug" placeholder="输入小组代号">
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputSummary">小组简介：</label>
-    <div class="controls">
-      <textarea name="group[summary]" id="inputSummary" class="span5" rows="10"></textarea>
+    <div class="field-row clearfix">
+      <label class="label" for="inputSummary">小组简介：</label>
+      <div class="field-textarea">
+        <textarea name="group[summary]" id="inputSummary" rows="5"></textarea>
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <div class="controls">
-      <button type="submit" class="btn btn-primary">提交</button>
+    <div class="field-row clearfix">
+      <div class="action">
+        <button type="submit" class="button">申请小组</button>
+      </div>
     </div>
-  </div>
-</form>
+  </form>
+</div>
