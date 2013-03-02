@@ -14,7 +14,7 @@ module Sinatra
             erb :"/admin/groups/new", :layout => :"/layout/admin"
           end
           post '/create/?' do
-            @group = current_user.groups.new(params[:group])
+            @group = Group.new(params[:group])
             if @group.save
               flash[:notice] = "你的小组 #{@group.name} 建立成功"
               redirect "/admin/group/#{@group.slug}"
