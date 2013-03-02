@@ -66,7 +66,22 @@ module Sinatra
           end
         end
         app.get '/sign_in/?' do
-          erb :'/sessions/new', :layout => :'/layout/admin'
+          @title = "登录"
+          erb :'/layout/sign_in', :layout => false
+        end
+        app.get '/sign_up/?' do
+          @title = "注册"
+          erb :'/layout/sign_up', :layout => false
+        end
+        app.post '/sign_up/?' do
+          @user = User.new(params[:user])
+          if @user.save
+            flash[:notice] = "创建用户成功"
+            redirect '/sign_in'
+          else
+            flash[:errors] = @user.errors.messages
+            redirect '/sign_up'
+          end
         end
         app.put '/sign_in/?' do
           session = Session.new(params[:session])
@@ -74,7 +89,7 @@ module Sinatra
             signed_in(user)
             user.after_login_update(request.ip)
             flash[:notice] = "#{session.username}登陆成功：）"
-            redirect "/admin/users"
+            redirect params[:return_to] || '/'
           else
             flash[:errors] = session.errors.messages || "用户名或者密码错误"
             redirect back

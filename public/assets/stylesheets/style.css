@@ -430,6 +430,56 @@ h1, h2, h3, h4, h5, h6 {
   width: 220px;
 }
 
+
+.create-group {
+  float: left;
+  margin-top: 2em;
+}
+
+.create-group textarea {
+  width: 400px;
+}
+
+
+.alert {
+  position: relative;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 0 #DDD;
+}
+
+.alert-error {
+  background-color: #FEE;
+  border: 1px solid #FDD;
+}
+
+.alert-error {
+  background-color: #FEE;
+  border: 1px solid #FDD;
+}
+.alert-success {
+  background-color: #dff0d8;
+  border: 1px solid #d6e9c6;
+}
+
+.alert button {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.alert .typo-ul {
+  margin-left: 1.3em;
+  list-style: disc;
+  font-size: 12px;
+}
+
+
+
 /* Layout stylesheets */
 
 .container {

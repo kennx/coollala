@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
   EMAIL_REGEX = /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i
   validates_presence_of         :name,      :message => "用户名不能为空"
   validates_presence_of         :email,     :message => "邮箱地址不能为空"
-  validates_uniqueness_of       :name,      :message => "该用户名已存在，请使用其他用户名"
-  validates_uniqueness_of       :email,     :message => "该邮箱地址已被注册，请使用其他邮箱"
+  validates_uniqueness_of       :name,      :message => "该用户名已存在，请使用其他用户名", :case_sensitive => false
+  validates_uniqueness_of       :email,     :message => "该邮箱地址已被注册，请使用其他邮箱", :case_sensitive => false
   validates_confirmation_of     :password,  :message => "二次密码输入不一致"
   
   before_create do

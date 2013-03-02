@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title><%= meta_title(@title) %></title>
+  <link rel="stylesheet" href="/assets/stylesheets/style.css" />
+  <style type="text/css">
+    body, html {
+      background-color:#EEE;
+    }
+  </style>
+  <script type="text/javascript" src="/assets/javascript/jquery.js"></script>
+  <script type="text/javascript" src="/assets/javascript/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="chunk-main">
+  <div class="container">
+    <div class="row-container">
+      <div class="col11">
+        <h1 class="branding">
+          <a href="/">coollala</a>
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row-container">
+    <div class="col12">
+      <div class="sign-up-form">
+        <% if flash[:errors].present? %>
+          <div class="alert alert-error">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <ul class="typo-ul">
+              <% automatic_each(flash[:errors]).each do |error| %>
+                <li><%== error %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <% if flash[:notice].present? %>
+          <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <ul class="typo-ul">
+              <% automatic_each(flash[:notice]).each do |notice| %>
+                <li><%== notice %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <form action="/sign_up" method="post" class="horizontal">
+          <div class="field-row">
+            <label for="input-username" class="label">用户名</label>
+            <div class="field-input-text">
+              <input type="text" name="user[name]" id="input-username" />
+            </div>
+          </div>
+          <div class="field-row">
+            <label for="input-email" class="label">电子邮箱</label>
+            <div class="field-input-text">
+              <input type="text" name="user[email]" id="input-email" />
+            </div>
+          </div>
+          <div class="field-row">
+            <label for="input-password" class="label">密码</label>
+            <div class="field-input-text">
+              <input type="password" name="user[password]" id="input-password" />
+            </div>
+          </div>
+          <div class="field-row">
+            <label for="input-password-confirmation" class="label">确认密码</label>
+            <div class="field-input-text">
+              <input type="password" name="user[password_confirmation]" id="input-password-confirmation" />
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="action">
+              <button type="submit" class="button-bule">注册</button>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="action">
+              <a href="/sign_in" style="color: #06C">登陆</a> 已有账户
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

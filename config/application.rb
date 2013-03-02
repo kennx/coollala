@@ -41,5 +41,7 @@ module Coollala
     helpers Sinatra::Coollala::ApplicationHelpers
     helpers Sinatra::Coollala::TimesHelpers
     helpers Sinatra::Coollala::UsersHelpers
+
+
   end
 end

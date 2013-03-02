@@ -3,6 +3,13 @@ module Sinatra
   module Coollala
     module ApplicationControllers
       def self.registered(app)
+        app.before '/sign_in/?' do
+          if request.url == request.referer
+            @return_to = '/'
+          else
+            @return_to = request.referer || '/'
+          end
+        end
         app.error 400..403 do
           "请求发生错误.Sorry..."
         end
@@ -11,6 +18,9 @@ module Sinatra
         end
         app.after do
           ActiveRecord::Base.clear_active_connections!
+        end
+        app.get '/' do
+          " "
         end
       end
     end

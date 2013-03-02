@@ -46,7 +46,34 @@
           <div class="head">
             <h3>创建小组</h3>
           </div>
-          短短的
+          <div class="create-group">
+            <form action="/group/create" method="post" class="horizontal">
+              <div class="field-row">
+                <label for="input-name" class="label">小组名称</label>
+                <div class="field-input-text">
+                  <input type="text" name="group[name]" id="input-name" />
+                </div>
+              </div>
+              <div class="field-row">
+                <label for="input-slug" class="label">小组代号</label>
+                <div class="field-input-text">
+                  <input type="text" name="group[slug]" id="input-slug" />
+                </div>
+              </div>
+              
+              <div class="field-row">
+                <label for="input-summary" class="label">小组介绍</label>
+                <div class="field-textarea">
+                  <textarea name="group[summary]" id="input-summary" rows="5"></textarea>
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="action">
+                  <button type="submit" class="button-bule">创建</button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div><!--column-main-->
     </div><!--row-fluid-->

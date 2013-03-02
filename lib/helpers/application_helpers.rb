@@ -29,6 +29,8 @@ module Sinatra
         arr.flatten
       end
 
+
+
     end
   end
   helpers Coollala::ApplicationHelpers
