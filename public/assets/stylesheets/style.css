@@ -433,12 +433,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .create-group {
   float: left;
+  width: 98%;
   margin-top: 2em;
 }
 
 .create-group textarea {
   width: 400px;
 }
+
+
 
 
 .alert {
@@ -583,6 +586,8 @@ form.horizontal .field-row {
   clear: both;
   margin-bottom: 10px;
   min-height: 30px;
+  height: auto;
+  _height: 30px;
 }
 
 form.horizontal .field-row .label {
