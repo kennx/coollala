@@ -52,6 +52,9 @@ module Sinatra
             erb :"/admin/groups/edit", :layout => :"/layout/admin"
           end
         end
+        app.get '/group/new/?' do
+          erb :'/groups/new'
+        end
       end
     end
   end
