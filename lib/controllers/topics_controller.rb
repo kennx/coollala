@@ -3,6 +3,11 @@ module Sinatra
   module Coollala
     module TopicsController
       def self.registered(app)
+        app.get '/' do
+          @topics = Topic.explore
+          @title = "话题浏览"
+          erb :'/topics/index', :layout => :"/layout/layout"
+        end
         app.namespace '/admin/?' do
           get '/topics/?' do
             @topics = Topic.all

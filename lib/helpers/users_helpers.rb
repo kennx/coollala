@@ -37,6 +37,21 @@ module Sinatra
         self.current_user = nil
       end
 
+      def avatar_url(user)
+        user.avatar
+      end
+
+      def avatar_tag(user, classname=nil)
+        avatar = "/assets/images/avatars/" + avatar_url(user)
+        avatar_image_tag = ''
+        if classname.nil?
+          avatar_image_tag = "<img src='#{avatar}' width='32' height='32' />"
+        else
+          avatar_image_tag = "<img src='#{avatar}' class='#{classname}'  width='32' height='32' />"
+        end
+        avatar_image_tag
+      end
+
     end
   end
   helpers Coollala::UsersHelpers
