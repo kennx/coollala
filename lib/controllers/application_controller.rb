@@ -19,9 +19,6 @@ module Sinatra
         app.after do
           ActiveRecord::Base.clear_active_connections!
         end
-        app.get '/' do
-          " "
-        end
       end
     end
   end
