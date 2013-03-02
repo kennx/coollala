@@ -4,7 +4,8 @@ require File.expand_path('../../config/config', __FILE__)
 
 Dir.glob(File.join(File.expand_path('../../', __FILE__), 'lib', 'helpers', '**', '*.rb')) { |file| require file }
 Dir.glob(File.join(File.expand_path('../../', __FILE__), 'lib', 'models', '**' '*.rb')) { |file| require file }
-Dir.glob(File.join(File.expand_path('../../', __FILE__), 'lib', 'controllers', '**', '*.rb')) { |file| require file }
+Dir.glob(File.join(File.expand_path('../../', __FILE__), 'lib', 'controllers', '**', '*.rb')) { |file| require file}
+
 
 module Coollala
   class Application < Sinatra::Base
