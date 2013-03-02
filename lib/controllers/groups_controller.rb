@@ -53,7 +53,19 @@ module Sinatra
           end
         end
         app.get '/group/new/?' do
-          erb :'/groups/new'
+          redirect '/sign_in' unless sign_in?
+          @title = "创建小组"
+          erb :'/groups/new', :layout => :'/layout/layout'
+        end
+        app.post '/group/create/?' do
+          @group = current_user.groups.new(params[:group])
+          if @group.save
+            flash[:notice] = "你的小组 #{@group.name} 建立成功"
+            redirect "/groups"
+          else
+            flash[:errors] = @group.errors.messages
+            redirect back
+          end
         end
       end
     end
