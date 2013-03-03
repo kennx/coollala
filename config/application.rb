@@ -7,6 +7,7 @@ Dir.glob(File.join(File.expand_path('../../', __FILE__), 'lib', 'models', '**' '
 Dir.glob(File.join(File.expand_path('../../', __FILE__), 'lib', 'controllers', '**', '*.rb')) { |file| require file}
 
 
+
 module Coollala
   class Application < Sinatra::Base
 
@@ -37,6 +38,7 @@ module Coollala
     register Sinatra::Coollala::UsersController
     register Sinatra::Coollala::GroupsController
     register Sinatra::Coollala::TopicsController
+    register Sinatra::Coollala::RepliesController
 
     helpers Sinatra::Coollala::RenderHelpers
     helpers Sinatra::Coollala::TagsHelpers

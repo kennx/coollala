@@ -10,15 +10,28 @@ module Sinatra
         end
         app.get '/group/topic/:id/?' do
           @topic = Topic.find(params[:id])
-          @group = @topic.group
           @title = @topic.title
           erb :'/topics/show', :layout => :"/layout/layout"
         end
         app.get '/group/:slug/new_topic/?' do
           redirect '/sign_in' unless sign_in?
           @group = Group.find_by_slug!(params[:slug])
-          @title = "在 #{@group.name} 创建话题"
+          @title = "111在 #{@group.name} 创建话题"
           erb :'/topics/new', :layout => :"/layout/layout"
+        end
+        app.get '/group/topic/:id/edit/?' do
+          @topic = Topic.find(params[:id])
+          erb :'/topics/edit', :layout => :'/layout/layout'
+        end
+        app.put '/group/topic/:id/update/?' do
+          @topic = Topic.find(params[:id])
+          if @topic.update_attributes(params[:topic])
+            flash[:notice] = "更新主题成功"
+            redirect "/group/topic/#{@topic.id}"
+          else
+            flash[:errors] = @topic.errors.messages
+            redirect "/group/topic/#{@topic.id}/edit"
+          end
         end
         app.post '/group/:slug/create_topic/?' do
           @group = Group.find_by_slug!(params[:slug])

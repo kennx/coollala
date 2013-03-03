@@ -2,6 +2,8 @@
 require 'digest/sha2'
 class User < ActiveRecord::Base
   has_many                      :groups
+  has_many                      :replies
+  has_many                      :topics
   EMAIL_REGEX = /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i
   validates_presence_of         :name,      :message => "用户名不能为空"
   validates_presence_of         :email,     :message => "邮箱地址不能为空"

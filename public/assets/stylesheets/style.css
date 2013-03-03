@@ -431,8 +431,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .topic-content .topic-body p {
-
+  margin-bottom: 1.618em;
 }
+
 .topic-content .topic-body a {
   color: #06C;
   border-bottom: 1px dotted #999;
@@ -442,7 +443,17 @@ h1, h2, h3, h4, h5, h6 {
   color: #07F;
 }
 
-.author-info {
+.replies-content {
+  margin-right: 1.618em;
+  border-top: 1px solid #EEE;
+}
+
+.reply-content {
+  padding: 1.618em 0;
+  border-bottom: 1px solid #EEE;
+}
+
+.author-info, .replied-info {
   height: 36px;
   line-height: 16px;
   margin-bottom: 10px;
@@ -450,7 +461,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #888;
 
 }
-.author-info img {
+.author-info img, .replied-info img {
   float: left;
   vertical-align: baseline;
   margin-right: 10px;

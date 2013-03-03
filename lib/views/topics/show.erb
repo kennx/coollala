@@ -9,3 +9,18 @@
     <%= auto_format @topic.body %>
   </div>
 </div>
+
+
+<div class="replies-content clearfix">
+  <%= render_partial "replies/replies", :locals => {:replies => @topic.replies} %>
+</div>
+
+<% if sign_in? %>
+<div class="">
+  <form action="/topic/<%= @topic.id %>/reply/create" method="post">
+    <input type="text" name="reply[title]" /><br>
+    <textarea name="reply[body]" cols="30" rows="10"></textarea><br>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+<% end %>

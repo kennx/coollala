@@ -1,0 +1,14 @@
+
+
+<% replies.each do |reply| %>
+<div class="reply-content">
+  <div class="replied-info">
+    <%= avatar_tag reply.user, "avatar" %>
+    <a href=""><%= reply.user.name %></a> <br>
+    <%= reply.created_at %>
+  </div>
+  <div class="reply-body">
+    <%= auto_format reply.body %>
+  </div>
+</div>
+<% end %>

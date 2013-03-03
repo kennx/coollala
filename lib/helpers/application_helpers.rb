@@ -31,13 +31,14 @@ module Sinatra
         arr.flatten
       end
 
-      URI_REGEX = /\b((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/?)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s\`!()\[\]{};:\'\".,<>?«»“”‘’]))/i
+      URL_REGEX = /\b((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/?)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s\`!()\[\]{};:\'\".,<>?«»“”‘’]))/i
+      IMAGE_REGEX = /((^http:\/\/)?(ww[0-9])\.(sinaimg)\.cn\/(bmiddle)\/(\w+)\.(jpg|bmp|png|gif))/i
       def auto_format(string)
         string = '' if string.nil?
+        string = string.to_str
         string = string.dup
         string = CGI::escape_html(string)
-        string = string.to_str
-        string = auto_link(string) if string.scan(URI_REGEX).any?
+        string = auto_link(string) if string.scan(URL_REGEX).any?
         string.gsub!(/\r\n?/, "\n")
         string.gsub!(/\n\n+/, "</p>\n\n<p>")
         string.gsub!(/([^\n]\n)(?=[^\n])/, '<br />')
@@ -47,8 +48,19 @@ module Sinatra
 
       def auto_link(string)
         string = string.dup
-        string = string.gsub(URI_REGEX) do |match|
-          CGI::unescape_html("<a href='#{match}' target='_blank'>#{match}</a>")
+        string = string.gsub(URL_REGEX) do |match|
+          url_type(match)
+        end
+        string
+      end
+
+      def url_type(url)
+        if url.scan(IMAGE_REGEX).any?
+          string = CGI::unescape_html("<a href='#{url}' target='_blank'><img src='#{url}' /></a>")
+        elsif url.scan(URL_REGEX)
+          string = CGI::unescape_html("<a href='#{url}' target='_blank'>#{url}</a>")
+        else
+          string = url
         end
         string
       end
