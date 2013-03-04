@@ -4,7 +4,7 @@ class Reply < ActiveRecord::Base
   belongs_to    :topic,   :counter_cache => true
   validates_presence_of       :body,  :message => "回复内容不能空"
 
-  scope :last_replied_by, lambda {order("created_at DESC").limit(1)}
+  scope :sort_desc, lambda {includes(:user)}
 
   after_create :update_topic_replied_at
   def update_topic_replied_at

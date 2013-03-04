@@ -5,7 +5,7 @@
 html {
   color: #444;
   background: #FFF;
-  -webkit-text-size-adjust: 100%;
+  -webkit-text-size-adjust: none;
   -ms-text-size-adjust: 100%;
 }
 
@@ -335,6 +335,7 @@ h1, h2, h3, h4, h5, h6 {
 .wrapper .head {
   line-height: 36px;
   border-bottom: 1px solid #f2f2f2;
+  position: relative;
 }
 
 .wrapper .head h3 {
@@ -399,6 +400,36 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #F9F9F9;
   margin-bottom: 10px;
 }
+.group-info {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  height: 20px;
+  line-height: 20px;
+}
+
+.group-info a {
+  display: block;
+  padding: 0 10px;
+  font-size: 12px;
+  color: #777;
+  border: 1px solid #DEDEDE;
+  border-right-color: #C2C2C2;
+  border-bottom-color: #C2C2C2;
+  background-color: #E9E9E9;
+}
+
+.group-info a:hover {
+  background-color: #EEE;
+}
+
+.head h3 a {
+  color: #555;
+}
+
+.head h3 a:hover {
+  color: #07F;
+}
 
 .head h3 span.pull-right a {
   font-size: 14px;
@@ -430,6 +461,10 @@ h1, h2, h3, h4, h5, h6 {
   padding-right: 1.618em
 }
 
+.topic-content .topic-body {
+  padding-left: 1.618em
+}
+
 .topic-content .topic-body p {
   margin-bottom: 1.618em;
 }
@@ -452,6 +487,9 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1.618em 0;
   border-bottom: 1px solid #EEE;
 }
+.reply-content .reply-body {
+  padding: 0 1.618em;
+}
 
 .author-info, .replied-info {
   height: 36px;
@@ -465,6 +503,55 @@ h1, h2, h3, h4, h5, h6 {
   float: left;
   vertical-align: baseline;
   margin-right: 10px;
+}
+
+.author-info a, .replied-info a {
+  color: #07F;
+  border-bottom: 1px solid #DDD;
+}
+
+.author-info a:hover, .replied-info a:hover {
+  border-bottom-color: #07F;
+}
+
+#replying {margin-top: 1.618em}
+#replying textarea,
+#replying input{width: 450px}
+#replying input {color:#999;}
+#replying .horizontal .field-row .label {text-align: left; width: 50px}
+#replying .horizontal .field-row .action {margin-left: 60px;}
+
+
+.topics ul li .blue-counter,
+.topics ul li .red-counter,
+.topics ul li .gray-counter {
+  position: absolute;
+  width: 25px;
+  height: 20px;
+  text-align: center;
+  font-size: 9px;
+  line-height: 20px;
+  top: 5px;
+  left: -10px;
+  border-radius: 5px;
+}
+
+
+.topics ul li .blue-counter,
+.topics ul li .red-counter{
+  color: #FFF;
+}
+
+.topics ul li .blue-counter {
+  background-color: #05D;
+}
+
+.topics ul li .gray-counter {
+  background-color: #EEE;
+}
+
+.topics ul li .gray-counter {
+  color: #999
 }
 
 

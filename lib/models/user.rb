@@ -1,9 +1,10 @@
 # encoding: utf-8
 require 'digest/sha2'
 class User < ActiveRecord::Base
-  has_many                      :groups
   has_many                      :replies
   has_many                      :topics
+  has_many                      :members,        :dependent => :destroy
+  has_many                      :groups, :through => :members, :source => :group
   EMAIL_REGEX = /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i
   validates_presence_of         :name,      :message => "用户名不能为空"
   validates_presence_of         :email,     :message => "邮箱地址不能为空"
@@ -23,6 +24,10 @@ class User < ActiveRecord::Base
 
   validates_format_of           :email, :with => EMAIL_REGEX,
                                 :message => "邮箱地址格式有误，请检查"
+
+  def has_join?(slug)
+    groups.includes(:members).find_by_slug(slug)
+  end
 
   def after_login_update(req)
     self.last_login_at = Time.now

@@ -1,3 +1,17 @@
+<div class="head">
+  <h3>
+    <span class="pull-right">
+      <% if sign_in? %>
+        <% if current_user.has_join?(@topic.group.slug) %>
+          <a href="#replying">回复话题</a>
+        <% else %>
+          加入小组后可以参与回复.
+        <% end %>
+      <% end %>
+    </span>
+    &laquo; <a href="/group/<%= @topic.group.slug %>">返回小组首页</a></h3>
+</div>
+
 <div class="topic-content">
   <div class="topic-head">
     <h1><%= @topic.title %></h1>
@@ -12,15 +26,31 @@
 
 
 <div class="replies-content clearfix">
-  <%= render_partial "replies/replies", :locals => {:replies => @topic.replies} %>
+  <%= render_partial "replies/replies", :locals => {:replies => @topic.replies.sort_desc} %>
 </div>
 
 <% if sign_in? %>
-<div class="">
-  <form action="/topic/<%= @topic.id %>/reply/create" method="post">
-    <input type="text" name="reply[title]" /><br>
-    <textarea name="reply[body]" cols="30" rows="10"></textarea><br>
-    <button type="submit">Submit</button>
+  <div id="replying">
+  <form action="/topic/<%= @topic.id %>/reply/create" method="post" class="horizontal">
+    <div class="field-row clearfix">
+      <label class="label" for="inputTitle">标题：</label>
+      <div class="field-input-text">
+        <input type="text" name="reply[title]" id="inputTitle" value="[回复:] <%= @topic.title %>(<%= @topic.replies_count + 1 %>)" />
+      </div>
+    </div>
+    <div class="field-row clearfix">
+      <label class="label" for="inputBody">正文：</label>
+      <div class="field-textarea">
+        <textarea name="reply[body]" rows="5"></textarea>
+      </div>
+    </div>
+    <div class="field-row clearfix">
+      <div class="action">
+        <button type="submit" class="button">提交</button>
+      </div>
+    </div>
   </form>
 </div>
 <% end %>
+
+

@@ -1,22 +1,58 @@
 <div class="head">
-  <h3>小组简介</h3>
+  <h3><%= @group.name %> 小组</h3>
+  <div class="group-info">
+    <% if sign_in? %>
+      <% if current_user.has_join?(@group.slug) %>
+        <a href="/quit/group/<%= @group.slug %>" data-method="delete" data-confirm="Are you sure?">- 退出小组</a>
+      <% else %>
+        <a href="/join/group/<%= @group.slug %>" data-method="post" data-confirm="Are you sure?">+ 加入小组</a>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 <div class="group-summary">
-<%== @group.summary %>
+  <%= auto_format @group.summary %>
 </div>
 <div class="head">
-  <h3><span class="pull-right"><a href="/group/<%== @group.slug %>/new_topic">创建话题</a></span>共有 <%== @group.topics_count %> 话题</h3>
+  <h3>
+    <span class="pull-right">
+      <% if sign_in? %>
+        <% if current_user.has_join?(@group.slug) %>
+          <a href="/group/<%== @group.slug %>/new_topic">创建话题</a>
+        <% else %>
+          加入小组后发布才能回复话题
+        <% end %>
+      <% else %>
+        没有登录
+      <% end %>
+    </span>
+    共有 <%== @group.topics_count %> 话题</h3>
 </div>
 <div class="topics">
   <ul>
     <% @topics.each do |topic| %>
       <li class="clearfix">
-        <a href="/group/topic/<%== topic.id %>" class="title"><%== topic.title %></a>
+        <a href="/group/topic/<%= topic.id %>" class="title"><%= topic.title %></a>
         <div class="info">
-          <span class="pull-right"><a href=""><%= topic.user.name %></a> 回复了这个话题</span>
-          <span><%= avatar_tag(topic.user, "avatar") %><a href="/user/<%== topic.user_id %>"><%== topic.user.name %></a>  <%== chn_time_format(topic.created_at) %> 发布</span>
+          <span><%= avatar_tag(topic.user, "avatar") %><a href="/user/<%= topic.user_id %>"><%== topic.user.name %></a>  <%== chn_time_format(topic.created_at) %> 发布</span>
+          <% if topic.has_replied? %>
+            <span> &raquo; 最后 <a href=""><%= topic.last_replied_by.user.name %></a> 回复了这个话题</span>
+          <% end %>
         </div>
+        <%= replies_counter(topic) %>
       </li>
     <% end %>
   </ul>
 </div>
+<script type="text/javascript">
+ var method = $("a[data-method]")
+ $(method).click(function() {
+   if (confirm($(this).attr("data-confirm"))) {
+     $.post($(this).attr("href"), { _method: $(this).attr("data-method") }, function(data) {
+       window.location.href = data;
+       alert("操作成功:)");
+     });
+     return false;
+   }
+ })
+</script>

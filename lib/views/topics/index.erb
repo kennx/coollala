@@ -7,12 +7,14 @@
     <li class="clearfix">
       <a href="/group/topic/<%= topic.id %>" class="title"><%= topic.title %></a>
       <div class="info">
-        <% if topic.replies.last %>
-        <span class="pull-right"><a href=""><%= topic.last_replied_by.user.name %></a> 回复了这个话题</span>
-        <% end %>
         <span><%= avatar_tag(topic.user, "avatar") %><a href="/user/<%= topic.user_id %>"><%= topic.user.name %></a>  <%= chn_time_format(topic.created_at) %> 发布在 <a href="/group/<%= topic.group.slug %>"><%= topic.group.name %></a></span>
+        <% if topic.has_replied? %>
+          <span> &raquo; 最后 <a href=""><%= topic.last_replied_by.user.name %></a> 回复了这个话题</span>
+        <% end %>
       </div>
+      <%= replies_counter(topic) %>
     </li>
     <% end %>
   </ul>
 </div>
+

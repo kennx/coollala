@@ -9,6 +9,25 @@ module Sinatra
           @title = @group.name
           erb :'/groups/index', :layout => :"/layout/layout"
         end
+        app.post '/join/group/:slug/?' do
+          group = Group.find_by_slug!(params[:slug])
+          user = current_user
+          members = Member.new(:user => user, :group => group)
+          if members.save
+            flash[:notice] = "加入小组成功"
+            back
+          else
+            flash[:errors] = ["加入小组失败"]
+            back
+          end
+        end
+        app.delete '/quit/group/:slug/?' do
+          group = Group.find_by_slug!(params[:slug])
+          user = current_user
+          quit_group = Member.where(:group_id => group.id, :user_id => user.id).first
+          quit_group.destroy
+          back
+        end
         app.namespace '/admin/?' do
           get '/groups/?' do
             @groups = Group.all

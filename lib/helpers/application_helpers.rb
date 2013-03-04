@@ -66,6 +66,19 @@ module Sinatra
       end
 
 
+      def replies_counter(topic)
+        if topic.replies_count == 0
+          "<div class='gray-counter'>#{topic.replies_count}</div>"
+        elsif topic.replies_count > 99
+          "<div class='red-counter'>99</div>"
+        else
+          "<div class='blue-counter'>#{topic.replies_count}</div>"
+        end
+      end
+
+
+
+
     end
   end
   helpers Coollala::ApplicationHelpers
