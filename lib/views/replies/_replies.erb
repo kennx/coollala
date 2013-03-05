@@ -1,11 +1,10 @@
-
-
-<% replies.each do |reply| %>
+<% topic.replies.sort_desc.each do |reply| %>
 <div class="reply-content">
   <div class="replied-info">
     <%= avatar_tag reply.user, "avatar" %>
     <a href=""><%= reply.user.name %></a> <br>
     <%= reply.created_at %>
+    <span class="floor-number"><%= floor_name increment_floor(topic.replies_count) %></span>
   </div>
   <div class="reply-body">
     <%= auto_format reply.body %>

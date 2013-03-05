@@ -17,8 +17,9 @@ module Coollala
 
     use ActiveRecord::QueryCache
     use Rack::MethodOverride
-    use Rack::Session::Cookie, :key => "_coollala_session", :domain => nil, :path => '/', :secret => 'your_secret'
+    use Rack::Session::Cookie, :key => '_coollala_session', :domain => nil, :path => '/', :secret => 'your_secret'
     use Rack::Flash, :sweep => true
+    use Rack::Csrf, :raise => true
 
     configure :development, :test, :production do
       set :root, File.expand_path('../../', __FILE__)

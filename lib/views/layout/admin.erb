@@ -25,7 +25,7 @@
         $("#sign-out").click(function () {
             f = $('#sign-out-form')
             if (!f.length) {
-                $('body').append("<form id='sign-out-form' method='post' action='" + $(this).attr('href') + "'>" + "<%= hidden_field_tag :delete %></form>");
+                $('body').append("<form id='sign-out-form' method='post' action='" + $(this).attr('href') + "'>" + "<%= hidden_field_tag :methods => 'delete', :csrf => true %></form>");
                 if (confirm("确认登出？")) {
                     $('#sign-out-form').submit();
                 }

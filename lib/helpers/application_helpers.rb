@@ -31,6 +31,25 @@ module Sinatra
         arr.flatten
       end
 
+
+
+      def increment_floor(total_number)
+        @floor_number += 1 if floor_number < total_number
+      end
+
+      def floor_name(number)
+        case number
+          when 1
+            "<em class='num-1'>沙发</em>"
+          when 2
+            "<em class='num-2'>板凳</em>"
+          when 3
+            "<em class='num-3'>地板</em>"
+          else
+            "<em class='num'>#{number}楼</em>"
+        end
+      end
+
       URL_REGEX = /\b((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/?)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s\`!()\[\]{};:\'\".,<>?«»“”‘’]))/i
       IMAGE_REGEX = /((^http:\/\/)?(ww[0-9])\.(sinaimg)\.cn\/(bmiddle)\/(\w+)\.(jpg|bmp|png|gif))/i
       def auto_format(string)
@@ -74,6 +93,12 @@ module Sinatra
         else
           "<div class='blue-counter'>#{topic.replies_count}</div>"
         end
+      end
+
+      private
+
+      def floor_number
+        @floor_number ||= 0
       end
 
 

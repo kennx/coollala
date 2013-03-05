@@ -51,7 +51,7 @@
           <% end %>
 
         <form action="/sign_in?return_to=<%= @return_to %>" method="post" class="horizontal">
-          <%= hidden_field_tag :put %>
+          <%= hidden_field_tag :methods => "put", :csrf => true %>
           <div class="field-row">
             <label for="input-username" class="label">用户名</label>
             <div class="field-input-text">

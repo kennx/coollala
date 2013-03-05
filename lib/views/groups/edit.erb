@@ -1,5 +1,5 @@
 <form action="/admin/group/<%= @group.slug %>/update" method="post" class="form-horizontal">
-  <%= hidden_field_tag :put %>
+  <%= hidden_field_tag :methods => "put", :csrf => true %>
   <div class="control-group">
     <label class="control-label" for="inputName">小组名称：</label>
 

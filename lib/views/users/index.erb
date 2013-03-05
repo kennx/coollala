@@ -3,7 +3,7 @@
         $(".destroy").click(function () {
             f = $('#destroy_form')
             if (!f.length) {
-                $('body').append("<form id='destroy_form' method='post' action='" + $(this).attr('href') + "'>" + "<%= hidden_field_tag :delete %></form>");
+                $('body').append("<form id='destroy_form' method='post' action='" + $(this).attr('href') + "'>" + "<%= hidden_field_tag :methods => 'delete', :csrf => true %></form>");
                 if (confirm("确认删除？")) {
                     $('#destroy_form').submit();
                 }

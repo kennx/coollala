@@ -3,7 +3,7 @@
 </div>
 <div class="create-group">
   <form action="/group/topic/<%= @topic.id %>/update" method="post" class="horizontal">
-    <%= hidden_field_tag :put %>
+    <%= hidden_field_tag :methods => "put", :csrf => true %>
     <div class="field-row clearfix">
       <label class="label" for="inputTitle">主题：</label>
 

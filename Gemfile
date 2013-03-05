@@ -9,6 +9,7 @@ gem 'activerecord',             '~> 3.2.12',        :require => 'active_record'
 gem 'sinatra-activerecord',     '~> 1.2.1',         :require => 'sinatra/activerecord'
 
 gem 'rack-flash3',              :require => 'rack-flash'
+gem 'rack_csrf',                :require => 'rack/csrf'
 
 
 group :development do

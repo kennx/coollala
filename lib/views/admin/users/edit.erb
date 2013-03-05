@@ -11,7 +11,7 @@
         $(".btn-danger").click(function () {
             f = $('#destroy_form')
             if (!f.length) {
-                $('body').append("<form id='destroy_form' method='post' action='" + $(this).attr('href') + "'>" + "<%= hidden_field_tag :delete %></form>");
+                $('body').append("<form id='destroy_form' method='post' action='" + $(this).attr('href') + "'>" + "<%= hidden_field_tag :methods => "delete", :csrf => true %></form>");
                 if (confirm("确认删除？")) {
                     $('#destroy_form').submit();
                 }
@@ -22,7 +22,7 @@
     })
 </script>
 <form action="/admin/user/<%= @user.id %>/update" method="post" class="form-horizontal">
-  <%= hidden_field_tag :put %>
+  <%= hidden_field_tag :methods => "put", :csrf => true %>
   <div class="control-group">
     <label class="control-label">选择预览：</label>
 

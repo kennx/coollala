@@ -1,29 +1,30 @@
 # encoding: utf-8
+
 require 'digest/sha2'
+
 class User < ActiveRecord::Base
+
+  attr_accessible               :name, :email, :password, :password_confirmation
+
   has_many                      :replies
   has_many                      :topics
   has_many                      :members,        :dependent => :destroy
-  has_many                      :groups, :through => :members, :source => :group
+  has_many                      :groups,         :through => :members, :source => :group
+
   EMAIL_REGEX = /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i
-  validates_presence_of         :name,      :message => "用户名不能为空"
-  validates_presence_of         :email,     :message => "邮箱地址不能为空"
-  validates_uniqueness_of       :name,      :message => "该用户名已存在，请使用其他用户名", :case_sensitive => false
-  validates_uniqueness_of       :email,     :message => "该邮箱地址已被注册，请使用其他邮箱", :case_sensitive => false
-  validates_confirmation_of     :password,  :message => "二次密码输入不一致"
-  
+
+  validates_presence_of         :name,            :message => "用户名不能为空"
+  validates_presence_of         :email,           :message => "邮箱地址不能为空"
+  validates_uniqueness_of       :name,            :message => "该用户名已存在，请使用其他用户名", :case_sensitive => false
+  validates_uniqueness_of       :email,           :message => "该邮箱地址已被注册，请使用其他邮箱", :case_sensitive => false
+  validates_confirmation_of     :password,        :message => "二次密码输入不一致"
+  validates_length_of           :name,            :message => "用户名必须为大于3位小于等于15位", :within => 3...15
+  validates_length_of           :password,        :message => "密码长度必须为大于5位小于等于20位", :within => 5...20
+  validates_format_of           :email,           :message => "邮箱地址格式有误，请检查", :with => EMAIL_REGEX
+
   before_create do
     self.auth_token = SecureRandom.hex(5) + Time.now.to_i.to_s
   end
-
-  validates_length_of           :name, :within => 3...15,
-                                :message => "用户名必须为大于3位小于等于15位"
-
-  validates_length_of           :password, :within => 5...20,
-                                :message => "密码长度必须为大于5位小于等于20位"
-
-  validates_format_of           :email, :with => EMAIL_REGEX,
-                                :message => "邮箱地址格式有误，请检查"
 
   def has_join?(slug)
     groups.includes(:members).find_by_slug(slug)
@@ -71,4 +72,5 @@ class User < ActiveRecord::Base
   def self.generate_encrypted_password(password, salt)
     Digest::SHA2.hexdigest(password.to_s + salt.to_s)
   end
+
 end

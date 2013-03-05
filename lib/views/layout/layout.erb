@@ -23,7 +23,7 @@
       <% if sign_in? %>
         [<a href="">Kenn</a>]
         <form action="/sign_out" style="display: inline" method="post">
-          <%= hidden_field_tag :delete %>
+          <%= hidden_field_tag :methods => "delete", :csrf => true %>
           <button class="button">登出</button>
         </form>
       <% else %>

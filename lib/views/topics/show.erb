@@ -26,13 +26,14 @@
 
 
 <div class="replies-content clearfix">
-  <%= render_partial "replies/replies", :locals => {:replies => @topic.replies.sort_desc} %>
+  <%= render_partial "replies/replies", :locals => {:topic => @topic} %>
 </div>
 
 <% if sign_in? %>
   <div id="replying">
   <form action="/topic/<%= @topic.id %>/reply/create" method="post" class="horizontal">
     <div class="field-row clearfix">
+      <%= csrf_tag %>
       <label class="label" for="inputTitle">标题：</label>
       <div class="field-input-text">
         <input type="text" name="reply[title]" id="inputTitle" value="[回复:] <%= @topic.title %>(<%= @topic.replies_count + 1 %>)" />
