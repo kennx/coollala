@@ -1,0 +1,16 @@
+<% if sign_in? %>
+<div class="user-plane">
+  <a href="/user/<%= current_user.id %>">
+    <%= avatar_tag current_user %>
+    我的主页
+  </a>
+</div>
+<div class="groups">
+  <ul class="typo-ul">
+    <li><a href="">我管理的小组</a></li>
+    <li><a href="">我加入的小组</a></li>
+    <li><a href="">修改资料</a></li>
+    <li><a href="">更新密码</a></li>
+  </ul>
+</div>
+<% end %>

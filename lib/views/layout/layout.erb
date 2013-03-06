@@ -19,17 +19,7 @@
         <li><a href="">发现小组</a></li>
       </ul>
     </div>
-    <div class="userinfo">
-      <% if sign_in? %>
-        [<a href="">Kenn</a>]
-        <form action="/sign_out" style="display: inline" method="post">
-          <%= hidden_field_tag :methods => "delete", :csrf => true %>
-          <button class="button">登出</button>
-        </form>
-      <% else %>
-        <a href="/sign_in">登录</a> | <a href="/sign_up">注册</a>
-      <% end %>
-    </div>
+    <%= render_partial 'shared/top' %>
   </div>
 </div>
 <div class="container-fluid">

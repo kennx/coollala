@@ -287,7 +287,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .column-main {
   padding-top: 20px;
-  margin: 0 210px 0 160px;
+  margin: 0 200px 0 160px;
 }
 
 .column150 {
@@ -298,20 +298,47 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .column200 {
-  width: 200px;
+  width: 180px;
   padding-top: 20px;
   zoom: 1;
 }
 
-.column200 .typo-ul {
+.column150 .typo-ul {
   margin-left: 1.3em;
   list-style: disc;
   font-size: 12px;
   color: #DDD;
 }
 
-.groups {
+.user-plane {
+  height: 52px;
+  width: 140px;
   margin-bottom: 10px;
+}
+.user-plane a {
+  display: block;
+  padding: 10px;
+  width: 120px;
+  height: 32px;
+  line-height: 32px;
+  background-color: #F9F9F9;
+  font-size: 12px;
+}
+
+.user-plane a:hover {
+  background-color: #EEE;
+}
+
+.user-plane a img {
+  vertical-align: middle;
+  padding-right: 10px;
+}
+
+.groups {
+  width: 120px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #F9F9F9;
 }
 
 .groups .head {
@@ -322,6 +349,23 @@ h1, h2, h3, h4, h5, h6 {
 .groups .head h3 {
   padding: 0 10px;
   color: #999;
+}
+
+.group_bar {
+  padding: 5px 10px;
+  background-color: #F9F9F9;
+}
+
+.group_bar h3 {
+  border-bottom: 1px solid #EEE;
+}
+
+.group_bar cite {
+  font-size: 12px;
+  color: #555;
+  display: block;
+  line-height: 1.5;
+  padding: 0.5em 0;
 }
 
 .pull-right {
@@ -401,25 +445,25 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 10px;
 }
 .group-info {
-  position: absolute;
-  right: 10px;
-  top: 8px;
-  height: 20px;
-  line-height: 20px;
+  font-size: 12px;
+  margin-bottom: 10px;
+  color: seagreen;
 }
 
-.group-info a {
+.group-info a.btn {
   display: block;
   padding: 0 10px;
-  font-size: 12px;
+  font-size: 14px;
   color: #777;
+  margin-bottom: 1em;
+  text-align: center;
   border: 1px solid #DEDEDE;
   border-right-color: #C2C2C2;
   border-bottom-color: #C2C2C2;
   background-color: #E9E9E9;
 }
 
-.group-info a:hover {
+.group-info a.btn:hover {
   background-color: #EEE;
 }
 
