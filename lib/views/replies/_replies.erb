@@ -1,3 +1,7 @@
+<div class="head">
+  <h3>共有<%= topic.replies_count %>条回复</h3>
+</div>
+
 <% topic.replies.sort_desc.each do |reply| %>
 <div class="reply-content">
   <div class="replied-info">
@@ -8,6 +12,28 @@
   </div>
   <div class="reply-body">
     <%= auto_format reply.body %>
+    <div class="bottom">
+      &nbsp;
+      <% if sign_in? %>
+        <% if reply.replier?(current_user) %>
+          <a href="/reply/<%= reply.id %>/destroy" data-method="delete" data-confirm="确认删除?">删除</a>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
 <% end %>
+
+<script type="text/javascript">
+  var method = $("a[data-method]")
+  $(method).click(function() {
+    if (confirm($(this).attr("data-confirm"))) {
+      $.post($(this).attr("href"), { _method: $(this).attr("data-method"), _csrf: "<%= csrf_token %>" }, function(data) {
+        window.location.href = data;
+        alert("操作成功:)");
+      });
+      return false;
+    }
+    return false;
+  })
+</script>

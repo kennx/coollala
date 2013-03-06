@@ -462,7 +462,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .topic-content .topic-body {
-  padding-left: 1.618em
+  margin-left: 40px;
 }
 
 .topic-content .topic-body p {
@@ -478,17 +478,49 @@ h1, h2, h3, h4, h5, h6 {
   color: #07F;
 }
 
+.topic-content .topic-body .bottom {
+  text-align: right;
+  padding: 0 1em;
+}
+
+.topic-content .topic-body .bottom a {
+  font-size: 12px;
+  color: #07F;
+  border-bottom: none;
+}
+
 .replies-content {
   margin-right: 1.618em;
-  border-top: 1px solid #EEE;
 }
 
 .reply-content {
-  padding: 1.618em 0;
-  border-bottom: 1px solid #EEE;
+  padding-top: 1.618em;
+
 }
 .reply-content .reply-body {
-  padding: 0 1.618em;
+  margin-left: 40px;
+  border-bottom: 1px solid #EEE;
+}
+
+.reply-content .bottom {
+  text-align: right;
+  visibility: hidden;
+}
+
+.reply-content:hover .bottom {
+  display: block;
+  visibility: visible;
+}
+
+.reply-content .bottom a {
+  color: #888;
+  font-size: 12px;
+  padding: 0 5px;
+}
+
+.reply-content .bottom a:hover {
+  background-color: #07F;
+  color: #FFF;
 }
 
 .author-info, .replied-info {
@@ -536,12 +568,30 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom-color: #07F;
 }
 
-#replying {margin-top: 1.618em}
+#replying {
+  margin-top: 1.618em
+}
+
+.create-topic textarea,
+.create-topic input,
 #replying textarea,
-#replying input{width: 450px}
-#replying input {color:#999;}
-#replying .horizontal .field-row .label {text-align: left; width: 50px}
-#replying .horizontal .field-row .action {margin-left: 60px;}
+#replying input {
+  width: 450px
+}
+
+#replying input {
+  color:#999;
+}
+#replying .horizontal .field-row .label,
+.create-topic .horizontal .field-row .label {
+  text-align: left;
+  width: 50px
+}
+
+#replying .horizontal .field-row .action,
+.create-topic .horizontal .field-row .action {
+  margin-left: 60px;
+}
 
 
 .topics ul li .blue-counter,
@@ -615,7 +665,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-.create-group {
+.create-group,
+.create-topic {
   float: left;
   width: 98%;
   margin-top: 2em;

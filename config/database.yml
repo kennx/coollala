@@ -25,8 +25,9 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: coollala_app_production
+  database: d2a98c89fc5b5466caf31d8c1ec3e51ea
   pool: 5
-  username: root
-  password: 
+  username: uqN6fldB0Uxop
+  password: pU3QPxwHEe5E2
   host: localhost
+  port: 10001

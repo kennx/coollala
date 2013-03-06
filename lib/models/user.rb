@@ -47,6 +47,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  def is_author?(topic_id)
+    topics.where(:user_id => self.id,
+    :id => topic_id).limit(1).present?
+  end
+
+
+
   def password
     @password
   end

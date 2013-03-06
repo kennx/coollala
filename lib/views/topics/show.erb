@@ -1,5 +1,22 @@
-<div class="head">
-  <h3>
+<div class="column150 pull-left">
+  <!--<div class="groups">-->
+    <!--<div class="head">-->
+      <!--<h3>管理</h3>-->
+    <!--</div>-->
+    <!--<ul class="typo-ul">-->
+      <!--<li><a href="">我管理的小组</a></li>-->
+      <!--<li><a href="">我加入的小组</a></li>-->
+      <!--<li><a href="">修改资料</a></li>-->
+      <!--<li><a href="">更新密码</a></li>-->
+    <!--</ul>-->
+  <!--</div>-->
+</div><!--column200-->
+<div class="column200 pull-right">
+</div>
+<div class="column-main">
+  <div class="wrapper clearfix">
+    <div class="head">
+      <h3>
     <span class="pull-right">
       <% if sign_in? %>
         <% if current_user.has_join?(@topic.group.slug) %>
@@ -9,49 +26,64 @@
         <% end %>
       <% end %>
     </span>
-    &laquo; <a href="/group/<%= @topic.group.slug %>">返回小组首页</a></h3>
-</div>
+        &laquo; <a href="/group/<%= @topic.group.slug %>">返回小组首页</a></h3>
+    </div>
 
-<div class="topic-content">
-  <div class="topic-head">
-    <h1><%= @topic.title %></h1>
-  </div>
-  <div class="author-info">
-    <%= avatar_tag(@topic.user) %> <a href="/user/<%= @topic.user_id %>"><%= @topic.user.name %></a> <br> 在 <%= @topic.created_at %> 发布
-  </div>
-  <div class="topic-body">
-    <%= auto_format @topic.body %>
-  </div>
-</div>
-
-
-<div class="replies-content clearfix">
-  <%= render_partial "replies/replies", :locals => {:topic => @topic} %>
-</div>
-
-<% if sign_in? %>
-  <div id="replying">
-  <form action="/topic/<%= @topic.id %>/reply/create" method="post" class="horizontal">
-    <div class="field-row clearfix">
-      <%= csrf_tag %>
-      <label class="label" for="inputTitle">标题：</label>
-      <div class="field-input-text">
-        <input type="text" name="reply[title]" id="inputTitle" value="[回复:] <%= @topic.title %>(<%= @topic.replies_count + 1 %>)" />
+    <div class="topic-content">
+      <div class="topic-head">
+        <h1><%= @topic.title %></h1>
+      </div>
+      <div class="author-info">
+        <%= avatar_tag(@topic.user) %> <a href="/user/<%= @topic.user_id %>"><%= @topic.user.name %></a> <br> 在 <%= @topic.created_at %> 发布
+      </div>
+      <div class="topic-body">
+        <%= auto_format @topic.body %>
+        <div class="bottom">
+          <% if sign_in? %>
+            <% if current_user.is_author?(@topic.id) %>
+              <a href='/group/topic/<%= @topic.id %>/edit'>编辑</a> ?
+              <a href='/group/topic/<%= @topic.id %>/trash' data-method="delete" data-confirm="确定删除?">删除</a>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
-    <div class="field-row clearfix">
-      <label class="label" for="inputBody">正文：</label>
-      <div class="field-textarea">
-        <textarea name="reply[body]" rows="5"></textarea>
-      </div>
+
+
+    <div class="replies-content clearfix">
+      <%= render_partial "replies/replies", :locals => {:topic => @topic} %>
     </div>
-    <div class="field-row clearfix">
-      <div class="action">
-        <button type="submit" class="button">提交</button>
+
+    <% if sign_in? %>
+      <div id="replying">
+        <form action="/topic/<%= @topic.id %>/reply/create" method="post" class="horizontal">
+          <div class="field-row clearfix">
+            <%= csrf_tag %>
+            <label class="label" for="inputTitle">标题：</label>
+            <div class="field-input-text">
+              <input type="text" name="reply[title]" id="inputTitle" value="[回复:] <%= @topic.title %>(<%= @topic.replies_count + 1 %>)" />
+            </div>
+          </div>
+          <div class="field-row clearfix">
+            <label class="label" for="inputBody">正文：</label>
+            <div class="field-textarea">
+              <textarea name="reply[body]" rows="5"></textarea>
+            </div>
+          </div>
+          <div class="field-row clearfix">
+            <div class="action">
+              <button type="submit" class="button">提交</button>
+            </div>
+          </div>
+        </form>
       </div>
-    </div>
-  </form>
-</div>
-<% end %>
+    <% end %>
+  </div>
+</div><!--column-main-->
+
+
+
+
+
 
 

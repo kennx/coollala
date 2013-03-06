@@ -22,4 +22,8 @@ class Reply < ActiveRecord::Base
     end
   end
 
+  def replier?(other_user)
+    user.id == other_user.id
+  end
+
 end

@@ -1,32 +1,75 @@
-<div class="head">
-  <h3>创建小组</h3>
+<div class="column150 pull-left">
+  <!--<div class="groups">-->
+  <!--<div class="head">-->
+  <!--<h3>管理</h3>-->
+  <!--</div>-->
+  <!--<ul class="typo-ul">-->
+  <!--<li><a href="">我管理的小组</a></li>-->
+  <!--<li><a href="">我加入的小组</a></li>-->
+  <!--<li><a href="">修改资料</a></li>-->
+  <!--<li><a href="">更新密码</a></li>-->
+  <!--</ul>-->
+  <!--</div>-->
+</div><!--column200-->
+<div class="column200 pull-right">
 </div>
-<div class="create-group">
-  <form action="/group/create" method="post" class="horizontal">
-    <div class="field-row clearfix">
-      <label class="label" for="inputName"><sup>*</sup> 小组名称：</label>
+<div class="column-main">
+  <div class="wrapper clearfix">
+    <div class="head">
+      <h3>创建小组</h3>
+    </div>
+    <div class="create-group">
+      <form action="/groups/create" method="post" class="horizontal">
+        <%= csrf_tag %>
+        <div class="field-row clearfix">
+          <label class="label" for="inputName"><sup>*</sup> 小组名称：</label>
 
-      <div class="field-input-text">
-        <input type="text" name="group[name]" id="inputName" placeholder="输入小组名称">
-      </div>
-    </div>
-    <div class="field-row">
-      <label class="label" for="inputSlug">* 小组代号：</label>
+          <div class="field-input-text">
+            <input type="text" name="group[name]" id="inputName" placeholder="输入小组名称">
+          </div>
+        </div>
+        <div class="field-row">
+          <label class="label" for="inputSlug">* 小组代号：</label>
 
-      <div class="field-input-text">
-        <input type="text" name="group[slug]" id="inputSlug" placeholder="输入小组代号">
-      </div>
+          <div class="field-input-text">
+            <input type="text" name="group[slug]" id="inputSlug" placeholder="输入小组代号">
+          </div>
+        </div>
+        <div class="field-row clearfix">
+          <label class="label" for="inputSummary">小组简介：</label>
+          <div class="field-textarea">
+            <textarea name="group[summary]" id="inputSummary" rows="5"></textarea>
+          </div>
+        </div>
+        <div class="field-row clearfix">
+          <div class="action">
+            <button type="submit" class="button">申请小组</button>
+          </div>
+        </div>
+      </form>
     </div>
-    <div class="field-row clearfix">
-      <label class="label" for="inputSummary">小组简介：</label>
-      <div class="field-textarea">
-        <textarea name="group[summary]" id="inputSummary" rows="5"></textarea>
-      </div>
-    </div>
-    <div class="field-row clearfix">
-      <div class="action">
-        <button type="submit" class="button">申请小组</button>
-      </div>
-    </div>
-  </form>
-</div>
+  </div>
+</div><!--column-main-->
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+  var method = $("a[data-method]")
+  $(method).click(function() {
+    if (confirm($(this).attr("data-confirm"))) {
+      $.post($(this).attr("href"), { _method: $(this).attr("data-method"), _csrf: "<%= csrf_token %>" }, function(data) {
+        window.location.href = data;
+        alert("操作成功:)");
+      });
+      return false;
+    }
+  })
+</script>

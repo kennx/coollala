@@ -1,26 +1,55 @@
-<div class="head">
-  <h3>编辑话题</h3>
-</div>
-<div class="create-group">
-  <form action="/group/topic/<%= @topic.id %>/update" method="post" class="horizontal">
-    <%= hidden_field_tag :methods => "put", :csrf => true %>
-    <div class="field-row clearfix">
-      <label class="label" for="inputTitle">主题：</label>
 
-      <div class="field-input-text">
-        <input type="text" name="topic[title]" id="inputTitle" value="<%= @topic.title %>" />
-      </div>
-    </div>
-    <div class="field-row clearfix">
-      <label class="label" for="inputBody">正文：</label>
-      <div class="field-textarea">
-        <textarea name="topic[body]" id="inputBody" rows="5"><%= @topic.body %></textarea>
-      </div>
-    </div>
-    <div class="field-row clearfix">
-      <div class="action">
-        <button type="submit" class="button">发布</button>
-      </div>
-    </div>
-  </form>
+
+
+<div class="column150 pull-left">
+  <!--<div class="groups">-->
+  <!--<div class="head">-->
+  <!--<h3>管理</h3>-->
+  <!--</div>-->
+  <!--<ul class="typo-ul">-->
+  <!--<li><a href="">我管理的小组</a></li>-->
+  <!--<li><a href="">我加入的小组</a></li>-->
+  <!--<li><a href="">修改资料</a></li>-->
+  <!--<li><a href="">更新密码</a></li>-->
+  <!--</ul>-->
+  <!--</div>-->
+</div><!--column200-->
+<div class="column200 pull-right">
 </div>
+<div class="column-main">
+  <div class="wrapper clearfix">
+    <div class="head">
+      <h3>编辑话题</h3>
+    </div>
+    <div class="create-topic">
+      <form action="/group/topic/<%= @topic.id %>/update" method="post" class="horizontal">
+        <%= hidden_field_tag :methods => "put", :csrf => true %>
+        <div class="field-row clearfix">
+          <label class="label" for="inputTitle">主题：</label>
+
+          <div class="field-input-text">
+            <input type="text" name="topic[title]" id="inputTitle" value="<%= @topic.title %>" />
+          </div>
+        </div>
+        <div class="field-row clearfix">
+          <label class="label" for="inputBody">正文：</label>
+          <div class="field-textarea">
+            <textarea name="topic[body]" id="inputBody" rows="20"><%= @topic.body %></textarea>
+          </div>
+        </div>
+        <div class="field-row clearfix">
+          <div class="action">
+            <button type="submit" class="button">发布</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div><!--column-main-->
+
+
+
+
+
+
+

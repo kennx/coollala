@@ -3,6 +3,11 @@ module Sinatra
   module Coollala
     module GroupsController
       def self.registered(app)
+        app.before '/groups/:slug/?' do
+          unless params[:slug].scan(/new|create/).any?
+            @group = Group.find_by_slug!(params[:slug])
+          end
+        end
         app.get '/group/:slug/?' do
           @group = Group.find_by_slug!(params[:slug])
           @topics = @group.topics.recent
@@ -77,16 +82,17 @@ module Sinatra
             erb :"/admin/groups/edit", :layout => :"/layout/admin"
           end
         end
-        app.get '/group/new/?' do
+        app.get '/groups/new/?' do
           redirect '/sign_in' unless sign_in?
           @title = "创建小组"
           erb :'/groups/new', :layout => :'/layout/layout'
         end
-        app.post '/group/create/?' do
-          @group = current_user.groups.new(params[:group])
+        app.post '/groups/create/?' do
+          @group = Group.new(params[:group])
+          @group.user_id = current_user.id
           if @group.save
             flash[:notice] = "你的小组 #{@group.name} 建立成功"
-            redirect "/groups"
+            redirect "/group/#{@group.slug}"
           else
             flash[:errors] = @group.errors.messages
             redirect back

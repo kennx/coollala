@@ -15,6 +15,11 @@ module Sinatra
             redirect back
           end
         end
+        app.delete '/reply/:id/destroy/?' do
+          @reply = current_user.replies.find(params[:id])
+          @reply.destroy
+          back
+        end
       end
     end
   end

@@ -17,7 +17,7 @@ end
 namespace :app do
   desc 'Run Application'
   task :s do
-    sh "shotgun -p 4567"
+    sh "shotgun --server=thin --port=4567 --env=development config.ru"
   end
   desc 'Enter Application Console'
   task :c do
