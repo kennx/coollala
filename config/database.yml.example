@@ -25,9 +25,9 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: d2a98c89fc5b5466caf31d8c1ec3e51ea
+  database:
   pool: 5
-  username: uqN6fldB0Uxop
-  password: pU3QPxwHEe5E2
+  username:
+  password:
   host: localhost
-  port: 10001
+  port: 3306
