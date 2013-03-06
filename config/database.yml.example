@@ -1,0 +1,33 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: coollala_app_development
+  pool: 5
+  username: root
+  password:
+  host: localhost
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  pool: 5
+  database: coollala_app_test
+  username: root
+  password:
+  host: localhost
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: d2a98c89fc5b5466caf31d8c1ec3e51ea
+  pool: 5
+  username: uqN6fldB0Uxop
+  password: pU3QPxwHEe5E2
+  host: localhost
+  port: 10001
