@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   validates_length_of           :password,        :message => "密码长度必须为大于5位小于等于20位", :within => 5...20
   validates_format_of           :email,           :message => "邮箱地址格式有误，请检查", :with => EMAIL_REGEX
 
+  scope :recent_members, lambda {limit(10).order("created_at DESC")}
+
   before_create do
     self.auth_token = SecureRandom.hex(5) + Time.now.to_i.to_s
   end

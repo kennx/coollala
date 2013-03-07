@@ -351,9 +351,17 @@ h1, h2, h3, h4, h5, h6 {
   color: #999;
 }
 
-.group_bar {
+.group_bar,
+.members{
   padding: 5px 10px;
   background-color: #F9F9F9;
+}
+.members {margin-top: 10px;}
+
+.members .typo-ul {
+  margin-left: 1.3em;
+  list-style: disc;
+  font-size: 12px;
 }
 
 .group_bar h3 {
@@ -491,6 +499,10 @@ h1, h2, h3, h4, h5, h6 {
   border-color: #06F;
 }
 
+.topic-content {
+  margin-bottom: 1em;
+}
+
 .topic-content .topic-head h1 {
   font-size: 24px;
   color: #07C;
@@ -525,12 +537,21 @@ h1, h2, h3, h4, h5, h6 {
 .topic-content .topic-body .bottom {
   text-align: right;
   padding: 0 1em;
+  color: #CCC;
+  font-size: 9px;
 }
 
 .topic-content .topic-body .bottom a {
   font-size: 12px;
-  color: #07F;
+  padding: 3px 5px;
+  background-color: #EEE;
+  color: #888;
   border-bottom: none;
+  border-radius: 4px;
+}
+
+.topic-content .topic-body .bottom a:hover {
+  background-color: #DDD;
 }
 
 .replies-content {

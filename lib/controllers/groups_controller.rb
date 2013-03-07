@@ -91,6 +91,7 @@ module Sinatra
           @group = Group.new(params[:group])
           @group.user_id = current_user.id
           if @group.save
+            Member.create(:group => @group, :user => current_user)
             flash[:notice] = "你的小组 #{@group.name} 建立成功"
             redirect "/group/#{@group.slug}"
           else

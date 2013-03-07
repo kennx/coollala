@@ -19,6 +19,14 @@
       <%= @topic.group.summary %>
     </cite>
   </div>
+  <div class="members">
+    <h3>小组成员 (<%= @topic.group.users_count %>)</h3>
+    <ul class="typo-ul">
+      <% @topic.group.users.recent_members.each do |user| %>
+      <li><%= user.name %></li>
+      <% end %>
+    </ul>
+  </div>
 </div><!--column200-->
 <div class="column-main">
   <div class="wrapper clearfix">
@@ -48,7 +56,7 @@
         <div class="bottom">
           <% if sign_in? %>
             <% if current_user.is_author?(@topic.id) %>
-              <a href='/group/topic/<%= @topic.id %>/edit'>编辑</a> ?
+              <a href='/group/topic/<%= @topic.id %>/edit'>编辑</a>
               <a href='/group/topic/<%= @topic.id %>/trash' data-method="delete" data-confirm="确定删除?">删除</a>
             <% end %>
           <% end %>

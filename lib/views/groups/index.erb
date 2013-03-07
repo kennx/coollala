@@ -13,6 +13,14 @@
       <% end %>
     <% end %>
   </div>
+  <div class="members">
+    <h3>小组成员 (<%= @group.users_count %>)</h3>
+    <ul class="typo-ul">
+      <% @group.users.recent_members.each do |user| %>
+        <li><%= user.name %></li>
+      <% end %>
+    </ul>
+  </div>
 </div><!--column200-->
 <div class="column-main">
   <div class="wrapper clearfix">

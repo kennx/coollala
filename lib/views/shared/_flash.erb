@@ -21,3 +21,10 @@
       </div>
   <% end %>
 </div>
+
+<script type="text/javascript">
+  var dismiss = 'button[data-dismiss="alert"]';
+  $(dismiss).click(function(){
+    $(this).parent().remove()
+  })
+</script>
