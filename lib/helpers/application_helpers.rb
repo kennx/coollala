@@ -51,7 +51,7 @@ module Sinatra
       end
 
       URL_REGEX = /\b((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/?)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s\`!()\[\]{};:\'\".,<>?«»“”‘’]))/i
-      IMAGE_REGEX = /((^http:\/\/)?(ww[0-9])\.(sinaimg)\.cn\/(bmiddle)\/(\w+)\.(jpg|bmp|png|gif))/i
+      IMAGE_REGEX = /((^http:\/\/)?(ww[0-9])\.(sinaimg)\.cn\/(bmiddle)\/(\w+)\.(jpg|bmp|png|gif)$)/i
       def auto_format(string)
         string = '' if string.nil?
         string = string.to_str
@@ -75,9 +75,9 @@ module Sinatra
 
       def url_type(url)
         if url.scan(IMAGE_REGEX).any?
-          string = CGI::unescape_html("<a href='#{url}' target='_blank'><img src='#{url}' /></a>")
+          string = CGI::unescape_html("\s <a href='#{url}' target='_blank'><img class='image' src='#{url}' /></a> \s")
         elsif url.scan(URL_REGEX)
-          string = CGI::unescape_html("<a href='#{url}' target='_blank'>#{url}</a>")
+          string = CGI::unescape_html("\s <a href='#{url}' target='_blank'>#{url}</a> \s")
         else
           string = url
         end
