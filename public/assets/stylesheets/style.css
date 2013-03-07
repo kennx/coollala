@@ -519,6 +519,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .topic-content .topic-body {
   margin-left: 40px;
+  word-wrap: break-word;
 }
 
 .topic-content .topic-body p {
@@ -527,12 +528,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .topic-content .topic-body a {
   color: #06C;
-  border-bottom: 1px dotted #999;
+  text-decoration: underline;
 }
 .topic-content .topic-body a:hover {
-  border-bottom: none;
+  text-decoration: none;
   color: #07F;
 }
+
 
 .topic-content .topic-body .bottom {
   text-align: right;
@@ -546,7 +548,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 3px 5px;
   background-color: #EEE;
   color: #888;
-  border-bottom: none;
+  text-decoration: none;
   border-radius: 4px;
 }
 
