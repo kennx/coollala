@@ -10,7 +10,7 @@ module Sinatra
         end
         app.get '/group/:slug/?' do
           @group = Group.find_by_slug!(params[:slug])
-          @topics = @group.topics.recent
+          @topics = @group.topics.recent.paginate(:page => params[:page], :per_page => 30)
           @title = @group.name
           erb :'/groups/index', :layout => :"/layout/layout"
         end

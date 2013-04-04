@@ -11,7 +11,7 @@ class Topic < ActiveRecord::Base
   validates_presence_of     :title, :message => "话题标题不能为空"
   validates_presence_of     :body,  :message => "话题内容不能为空"
 
-  scope :explore,        lambda { includes(:group, :user).order("IFNULL(replied_at, created_at) DESC").where(:status => [0, 1]) }
+  scope :explore,        lambda { includes(:group, :user).order("IFNULL(replied_at, created_at) DESC").where(:status => [0, 1]).limit(30) }
   scope :recent,         lambda { includes(:user).order("created_at DESC").where(:status => [0, 1]) }
   scope :visible_status, lambda { where(:status => [0, 1]) }
   

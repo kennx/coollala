@@ -446,6 +446,58 @@ h1, h2, h3, h4, h5, h6 {
   -o-transition: background-color 0.5s;
 }
 
+.paginate {
+  text-align: right;
+  margin-top: 1em;
+}
+.paginate ul {
+  display: inline;
+}
+
+
+.paginate ul li,
+.paginate ul li a,
+.paginate ul li em,
+.paginate ul li span{
+  display: inline-block;
+  width: auto;
+  margin:0;
+  padding: 0;
+  zoom: 1;
+  border: none;
+}
+
+.paginate ul li {
+  margin-left: 5px;
+}
+
+
+.paginate ul li a,
+.paginate ul li em,
+.paginate ul li span {
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  background-color: #DEDEDE;
+}
+
+
+.paginate ul li a:hover {
+  background-color: #F5F5F5;
+  color: #999;
+}
+
+.paginate ul li em {
+  background-color: #F5F5F5;
+}
+
+
+.paginate ul li span.disabled {
+  color: #CCC;
+  display: none;
+}
+
+
 .group-summary {
   padding: 10px;
   font-size: 12px;

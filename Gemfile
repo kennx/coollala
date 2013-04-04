@@ -8,8 +8,9 @@ gem 'mysql2'
 gem 'activerecord',             '~> 3.2.12',        :require => 'active_record'
 gem 'sinatra-activerecord',     '~> 1.2.1',         :require => 'sinatra/activerecord'
 
-gem 'rack-flash3',              :require => 'rack-flash'
-gem 'rack_csrf',                :require => 'rack/csrf'
+gem 'rack-flash3',                                  :require => 'rack-flash'
+gem 'rack_csrf',                                    :require => 'rack/csrf'
+gem 'will_paginate', '~> 3.0.0',                    :require => ['will_paginate', 'will_paginate/active_record']
 
 
 group :development do
@@ -24,11 +25,8 @@ group :test do
   gem 'autotest'
   gem 'autotest-growl'
   gem 'autotest-fsevent'
-  gem "capybara"
+  gem 'capybara'
 end
-
-
-
 
 gem 'thin'
 gem 'rake'

@@ -14,6 +14,7 @@ module Coollala
     register Sinatra::Namespace
     register Sinatra::ActiveRecordExtension
     register Sinatra::Coollala::Config
+    register WillPaginate::Sinatra
 
     use ActiveRecord::QueryCache
     use Rack::MethodOverride

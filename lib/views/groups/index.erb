@@ -60,6 +60,10 @@
           </li>
         <% end %>
       </ul>
+      <div class="paginate">
+        <ul><li><%= will_paginate @topics, :inner_window => 1, :previous_label => "上一页", :next_label => "下一页", :link_separator => "</li><li>", :container => false %>
+          </ul>
+      </div>
     </div>
   </div>
 </div><!--column-main-->
